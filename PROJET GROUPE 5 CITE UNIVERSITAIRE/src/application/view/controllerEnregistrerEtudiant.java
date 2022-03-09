@@ -14,6 +14,9 @@ public class controllerEnregistrerEtudiant {
     private TextField EmailChamp;
 
     @FXML
+    private ChoiceBox<?> IdParent;
+
+    @FXML
     private TextField NomChamp;
 
     @FXML

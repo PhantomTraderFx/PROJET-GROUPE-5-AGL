@@ -29,7 +29,7 @@ public class controllerAcceuil {
 
     @FXML
     void GoToHistory(MouseEvent event) {
-
+    	
     }
 
     @FXML
@@ -55,8 +55,10 @@ public class controllerAcceuil {
     }
 
     @FXML
-    void GoToPermission(MouseEvent event) {
-
+    void GoToPermission(MouseEvent event) throws IOException {
+    	fxml = FXMLLoader.load(getClass().getResource("EnregistrerPermission.fxml"));
+    	root.getChildren().removeAll();
+    	root.getChildren().setAll(fxml);
     }
 
     @FXML

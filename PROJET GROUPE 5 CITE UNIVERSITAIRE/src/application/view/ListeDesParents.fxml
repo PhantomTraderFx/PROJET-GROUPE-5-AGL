@@ -30,11 +30,11 @@
       </HBox>
       <TableView layoutX="26.0" layoutY="151.0" prefHeight="421.0" prefWidth="898.0">
         <columns>
-          <TableColumn prefWidth="150.3999900817871" text="NOM" />
-          <TableColumn minWidth="0.0" prefWidth="158.3999786376953" text="PRENOMS" />
-            <TableColumn prefWidth="213.59991455078125" text="NOM ETUDIANTS" />
-            <TableColumn prefWidth="192.00006103515625" text="NUMERO PARENT" />
-            <TableColumn prefWidth="180.800048828125" text="E-MAIL PARENT" />
+          <TableColumn fx:id="id_NomParent" prefWidth="150.3999900817871" text="NOM" />
+          <TableColumn fx:id="id_PrenomParent" minWidth="0.0" prefWidth="158.3999786376953" text="PRENOMS" />
+            <TableColumn fx:id="id_NomEtudiant" prefWidth="213.59991455078125" text="NOM ETUDIANTS" />
+            <TableColumn fx:id="id_NumeroParent" prefWidth="192.00006103515625" text="NUMERO PARENT" />
+            <TableColumn fx:id="id_MailParent" prefWidth="180.800048828125" text="E-MAIL PARENT" />
         </columns>
       </TableView>
    </children>
