@@ -40,13 +40,18 @@ public class controllerAcceuil {
     }
 
     @FXML
-    void GoToListParent(MouseEvent event) {
+    void GoToListParent(MouseEvent event) throws IOException {
+    	fxml = FXMLLoader.load(getClass().getResource("ListeDesParents.fxml"));
+    	root.getChildren().removeAll();
+    	root.getChildren().setAll(fxml);
 
     }
 
     @FXML
-    void GoToParentSave(MouseEvent event) {
-
+    void GoToParentSave(MouseEvent event) throws IOException {
+    	fxml = FXMLLoader.load(getClass().getResource("EnregistrerParent.fxml"));
+    	root.getChildren().removeAll();
+    	root.getChildren().setAll(fxml);
     }
 
     @FXML
@@ -55,8 +60,10 @@ public class controllerAcceuil {
     }
 
     @FXML
-    void GoToStudentSave(MouseEvent event) {
-
+    void GoToStudentSave(MouseEvent event) throws IOException {
+    	fxml = FXMLLoader.load(getClass().getResource("EnregistrerEtudiant.fxml"));
+    	root.getChildren().removeAll();
+    	root.getChildren().setAll(fxml);
     }
 
     @FXML
