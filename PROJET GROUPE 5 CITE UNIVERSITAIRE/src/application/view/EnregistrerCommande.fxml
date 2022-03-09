@@ -33,8 +33,8 @@
       <Button layoutX="740.0" layoutY="159.0" mnemonicParsing="false" onMouseClicked="#enregistrer" prefHeight="26.0" prefWidth="106.0" text="Enregistrer" />
       <TableView layoutX="19.0" layoutY="228.0" prefHeight="338.0" prefWidth="908.0">
          <columns>
-            <TableColumn prefWidth="124.800048828125" text="NOM ET PRENOMS" />
-            <TableColumn prefWidth="93.60000610351562" text="LUNDI">
+            <TableColumn prefWidth="218.3999900817871" text="NOM ET PRENOMS" />
+            <TableColumn minWidth="0.0" prefWidth="0.0" text="LUNDI">
                <columns>
                   <TableColumn prefWidth="47.20001220703125" text="MIDI" />
                   <TableColumn prefWidth="44.79998779296875" text="SOIR" />
