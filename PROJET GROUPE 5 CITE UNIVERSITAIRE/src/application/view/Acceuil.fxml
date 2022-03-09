@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="946.0" style="-fx-background-color: #;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerAcceuil">
+   <left>
+      <VBox prefHeight="586.0" prefWidth="210.0" style="-fx-background-color: #212D42;" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton alignment="BASELINE_LEFT" onMouseClicked="#GoToHome" prefHeight="58.0" prefWidth="210.0" text="Acceuil" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Light" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/outline_home_white_24dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" onMouseClicked="#GoToStudentSave" prefHeight="58.0" prefWidth="212.0" text="Enregistrer étudiant" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Light" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/outline_supervisor_account_white_24dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="68.0" onMouseClicked="#GoToParentSave" prefHeight="58.0" prefWidth="212.0" text="Enregistrer parent" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Light" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/outline_supervisor_account_white_24dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="127.0" onMouseClicked="#GoToPermission" prefHeight="58.0" prefWidth="213.0" text="Enregistrer permission" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Light" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/outline_transfer_within_a_station_white_24dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="185.0" onMouseClicked="#GoToCommande" prefHeight="58.0" prefWidth="213.0" text="Enregistrer commande" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Light" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/outline_restaurant_white_24dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="244.0" onMouseClicked="#GoToHistory" prefHeight="58.0" prefWidth="209.0" text="Historique de sorties" textFill="WHITE">
+               <font>
+                  <Font name="Dosis ExtraLight" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/outline_manage_history_white_24dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" onMouseClicked="#GoToListParent" prefHeight="58.0" prefWidth="209.0" text="Liste des parents" textFill="WHITE">
+               <font>
+                  <Font name="Dosis ExtraLight" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/outline_receipt_long_white_24dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox prefHeight="62.0" prefWidth="946.0" style="-fx-background-color: #1F252E;" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="62.0" prefWidth="550.0" text="GROUPE 5 TD1 : APPLICATION DE GESTION" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Regular" size="34.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="12.0" />
+         </padding>
+      </HBox>
+   </top>
+   <right>
+      <VBox prefHeight="586.0" prefWidth="34.0" style="-fx-background-color: #212D42;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="26.0" prefWidth="946.0" style="-fx-background-color: #1F252E;" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="26.0" prefWidth="226.0" text="EZEKIEL, BAKUS, DJABIA, SALEY, OUMAR" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Regular" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <AnchorPane fx:id="root" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

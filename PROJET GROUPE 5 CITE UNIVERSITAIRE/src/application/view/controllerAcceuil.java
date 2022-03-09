@@ -1,0 +1,68 @@
+package application.view;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+
+public class controllerAcceuil {
+	private Parent fxml;
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private AnchorPane root;
+
+    @FXML
+    void GoToCommande(MouseEvent event) throws IOException {
+    	fxml = FXMLLoader.load(getClass().getResource("EnregistrerCommande.fxml"));
+    	root.getChildren().removeAll();
+    	root.getChildren().setAll(fxml);
+    }
+
+    @FXML
+    void GoToHistory(MouseEvent event) {
+
+    }
+
+    @FXML
+    void GoToHome(MouseEvent event) throws IOException {
+    	fxml = FXMLLoader.load(getClass().getResource("Img.fxml"));
+    	root.getChildren().removeAll();
+    	root.getChildren().setAll(fxml);
+    }
+
+    @FXML
+    void GoToListParent(MouseEvent event) {
+
+    }
+
+    @FXML
+    void GoToParentSave(MouseEvent event) {
+
+    }
+
+    @FXML
+    void GoToPermission(MouseEvent event) {
+
+    }
+
+    @FXML
+    void GoToStudentSave(MouseEvent event) {
+
+    }
+
+    @FXML
+    void initialize() {
+        assert root != null : "fx:id=\"root\" was not injected: check your FXML file 'Acceuil.fxml'.";
+
+    }
+
+}
