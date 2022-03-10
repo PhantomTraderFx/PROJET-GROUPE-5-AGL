@@ -1,8 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane style="-fx-background-color: yelow;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
-	<!-- TODO Add Nodes -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="950.0" style="-fx-background-color: #19283E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerHistoriqueSorties">
+   <children>
+      <HBox alignment="CENTER" prefHeight="94.0" prefWidth="950.0" style="-fx-background-color: #055E41;">
+         <children>
+            <Label alignment="CENTER" prefHeight="94.0" prefWidth="619.0" text="HISTORIQUE DE SORTIE" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Regular" size="49.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/his-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
+      <Label layoutX="112.0" layoutY="142.0" prefHeight="14.0" prefWidth="130.0" text="NOM ET PRENOMS" textFill="WHITE">
+         <font>
+            <Font name="Dosis Regular" size="18.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="CommandeNomEtudiant" layoutX="254.0" layoutY="142.0" prefHeight="26.0" prefWidth="97.0" />
+      <Label layoutX="444.0" layoutY="142.0" prefHeight="26.0" prefWidth="45.0" text="DATE" textFill="WHITE">
+         <font>
+            <Font name="Dosis Regular" size="18.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="DateHistorique" layoutX="493.0" layoutY="143.0" prefHeight="26.0" prefWidth="111.0" />
+      <JFXButton layoutX="659.0" layoutY="142.0" onMouseClicked="#validerTableHistory" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: WHITE;" text="VALIDER" textFill="#167911" />
+      <TableView layoutX="6.0" layoutY="185.0" prefHeight="407.0" prefWidth="938.0">
+        <columns>
+          <TableColumn fx:id="idNom" prefWidth="206.3999605178833" text="NOM ET PRENOMS" />
+          <TableColumn fx:id="idLieu" prefWidth="156.0000762939453" text="LIEU" />
+            <TableColumn fx:id="idHS" prefWidth="164.79998779296875" text="HEURE DE SORTIS" />
+            <TableColumn fx:id="idHR" prefWidth="164.79998779296875" text="HEURE DE RETOUR" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

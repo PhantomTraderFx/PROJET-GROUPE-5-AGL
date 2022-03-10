@@ -28,7 +28,10 @@ public class controllerAcceuil {
     }
 
     @FXML
-    void GoToHistory(MouseEvent event) {
+    void GoToHistory(MouseEvent event) throws IOException {
+    	fxml = FXMLLoader.load(getClass().getResource("HistoriqueSorties.fxml"));
+    	root.getChildren().removeAll();
+    	root.getChildren().setAll(fxml);
     	
     }
 
