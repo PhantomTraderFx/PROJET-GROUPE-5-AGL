@@ -12,15 +12,15 @@ public class Main extends Application {
 	private static Scene scene;
 	@Override
 	public void start(Stage primaryStage) throws IOException{
-		scene = new Scene(loadFXML("view/Acceuil"),1180,675);
+		scene = new Scene(loadFXML("view/Acceuil"),1500,800);
 		primaryStage.setScene(scene);
 		primaryStage.resizableProperty().setValue(false);
 		primaryStage.show();
 	}
 	
-	public static void setRoot(String fxml) throws IOException {
+	/*public static void setRoot(String fxml) throws IOException {
 		scene.setRoot(loadFXML(fxml));
-	}
+	}*/
 
 	private static Parent loadFXML(String fxml) throws IOException {
 		// TODO Auto-generated method stub

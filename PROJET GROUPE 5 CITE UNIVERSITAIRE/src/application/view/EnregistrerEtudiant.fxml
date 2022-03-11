@@ -11,15 +11,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="950.0" style="-fx-background-color: #19283E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerEnregistrerEtudiant">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1270.0" style="-fx-background-color: #19283E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerEnregistrerEtudiant">
    <children>
       <Label layoutX="30.0" layoutY="105.0" prefHeight="0.0" prefWidth="33.0" text="NOM" textFill="WHITE">
          <font>
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="NomChamp" layoutX="120.0" layoutY="104.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+      <TextField fx:id="NomChamp" layoutX="120.0" layoutY="104.0" prefHeight="28.0" prefWidth="143.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
          <font>
             <Font name="Dosis Regular" size="20.0" />
          </font>
@@ -34,7 +33,7 @@
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="PrenomChamp" layoutX="120.0" layoutY="164.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+      <TextField fx:id="PrenomChamp" layoutX="120.0" layoutY="164.0" prefHeight="28.0" prefWidth="143.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
          <font>
             <Font name="Dosis Regular" size="20.0" />
          </font>
@@ -44,12 +43,12 @@
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="120.0" layoutY="293.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+      <TextField layoutX="120.0" layoutY="293.0" prefHeight="28.0" prefWidth="143.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
          <font>
             <Font name="Dosis Regular" size="20.0" />
          </font>
       </TextField>
-      <HBox alignment="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="94.0" prefWidth="950.0" style="-fx-background-color: #055E41;">
+      <HBox alignment="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="94.0" prefWidth="1270.0" style="-fx-background-color: #055E41;">
          <children>
             <Label alignment="CENTER" prefHeight="94.0" prefWidth="619.0" text="ENREGISTRER UN ETUDIANT" textFill="WHITE">
                <font>
@@ -65,9 +64,9 @@
             </Label>
          </children>
       </HBox>
-      <VBox layoutX="377.0" layoutY="93.0" prefHeight="507.0" prefWidth="574.0">
+      <VBox layoutX="377.0" layoutY="93.0" prefHeight="632.0" prefWidth="842.0">
          <children>
-            <ImageView fitHeight="507.0" fitWidth="573.0">
+            <ImageView fitHeight="632.0" fitWidth="894.0">
                <image>
                   <Image url="@../../../images/etu.jpeg" />
                </image>
@@ -79,7 +78,7 @@
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="ContactChamp" layoutX="121.0" layoutY="358.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+      <TextField fx:id="ContactChamp" layoutX="121.0" layoutY="358.0" prefHeight="27.0" prefWidth="143.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
          <font>
             <Font name="Dosis Regular" size="20.0" />
          </font>
@@ -89,27 +88,27 @@
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="EmailChamp" layoutX="121.0" layoutY="418.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+      <TextField fx:id="EmailChamp" layoutX="121.0" layoutY="418.0" prefHeight="27.0" prefWidth="143.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
          <font>
             <Font name="Dosis Regular" size="20.0" />
          </font>
       </TextField>
-      <Button layoutX="14.0" layoutY="524.0" mnemonicParsing="false" onMouseClicked="#SendEtudiantToBd" prefHeight="54.0" prefWidth="123.0" style="-fx-background-color: #1A2335;" text="ENREGISTRER" textFill="WHITE" wrapText="true">
+      <Button layoutX="30.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#SendEtudiantToBd" prefHeight="54.0" prefWidth="123.0" style="-fx-background-color: #1A2335;" text="ENREGISTRER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="203.0" layoutY="524.0" mnemonicParsing="false" onMouseClicked="#RemoveToChamp" prefHeight="54.0" prefWidth="123.0" style="-fx-background-color: #1A2335;" text="ANNULER" textFill="WHITE" wrapText="true">
+      <Button layoutX="207.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#RemoveToChamp" prefHeight="54.0" prefWidth="123.0" style="-fx-background-color: #1A2335;" text="ANNULER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="PalierSelector" layoutX="121.0" layoutY="228.0" onMouseClicked="#select" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: white;" />
+      <ChoiceBox fx:id="PalierSelector" layoutX="121.0" layoutY="228.0" onMouseClicked="#select" prefHeight="28.0" prefWidth="143.0" style="-fx-background-color: white;" />
       <Label layoutX="30.0" layoutY="481.0" prefHeight="26.0" prefWidth="74.0" text="N PARENT" textFill="WHITE">
          <font>
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="IdParent" layoutX="121.0" layoutY="481.0" onMouseClicked="#select" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: white;" />
+      <ChoiceBox fx:id="IdParent" layoutX="121.0" layoutY="481.0" onMouseClicked="#select" prefHeight="28.0" prefWidth="143.0" style="-fx-background-color: white;" />
    </children>
 </AnchorPane>

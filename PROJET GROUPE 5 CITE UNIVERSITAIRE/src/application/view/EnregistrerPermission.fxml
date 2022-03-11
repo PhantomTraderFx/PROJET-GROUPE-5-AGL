@@ -14,10 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="950.0" style="-fx-background-color: #19283E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerEnregistrerPermission">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1270.0" style="-fx-background-color: #19283E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerEnregistrerPermission">
    <children>
-      <HBox alignment="CENTER" prefHeight="94.0" prefWidth="950.0" style="-fx-background-color: #055E41;">
+      <HBox alignment="CENTER" prefHeight="94.0" prefWidth="1270.0" style="-fx-background-color: #055E41;">
          <children>
             <Label alignment="CENTER" prefHeight="94.0" prefWidth="681.0" text="ENREGISTRER UNE PERMISSION" textFill="WHITE">
                <font>
@@ -33,32 +32,32 @@
             </Label>
          </children>
       </HBox>
-      <Label layoutX="8.0" layoutY="122.0" prefHeight="14.0" prefWidth="130.0" text="NOM ET PRENOMS" textFill="WHITE">
+      <Label layoutX="190.0" layoutY="122.0" prefHeight="14.0" prefWidth="130.0" text="NOM ET PRENOMS" textFill="WHITE">
          <font>
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="NameEtudiant" layoutX="144.0" layoutY="121.0" onMouseClicked="#select" prefHeight="28.0" prefWidth="130.0" style="-fx-background-color: white;" />
-      <Label layoutX="296.0" layoutY="121.0" prefHeight="26.0" prefWidth="37.0" text="LIEU" textFill="WHITE">
+      <ChoiceBox fx:id="NameEtudiant" layoutX="326.0" layoutY="121.0" onMouseClicked="#select" prefHeight="28.0" prefWidth="130.0" style="-fx-background-color: white;" />
+      <Label layoutX="478.0" layoutY="121.0" prefHeight="26.0" prefWidth="37.0" text="LIEU" textFill="WHITE">
          <font>
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="LieuEtudiant" layoutX="352.0" layoutY="121.0" prefHeight="26.0" prefWidth="122.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+      <TextField fx:id="LieuEtudiant" layoutX="534.0" layoutY="121.0" prefHeight="26.0" prefWidth="122.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
          <font>
             <Font name="Dosis Regular" size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="493.0" layoutY="122.0" prefHeight="26.0" prefWidth="130.0" text="DATE DE SORTIE" textFill="WHITE">
+      <Label layoutX="675.0" layoutY="122.0" prefHeight="26.0" prefWidth="130.0" text="DATE DE SORTIE" textFill="WHITE">
          <font>
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <DatePicker fx:id="DateSortie" editable="false" layoutX="646.0" layoutY="122.0" prefHeight="26.0" prefWidth="112.0" />
-      <JFXButton layoutX="786.0" layoutY="120.0" onMouseClicked="#ValiderPermission" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: WHITE;" text="VALIDER" textFill="#167911" />
-      <ScrollPane layoutX="6.0" layoutY="207.0" prefHeight="388.0" prefWidth="938.0">
+      <DatePicker fx:id="DateSortie" editable="false" layoutX="828.0" layoutY="122.0" prefHeight="26.0" prefWidth="112.0" />
+      <JFXButton layoutX="968.0" layoutY="120.0" onMouseClicked="#ValiderPermission" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: WHITE;" text="VALIDER" textFill="#167911" />
+      <ScrollPane layoutX="43.0" layoutY="207.0" prefHeight="486.0" prefWidth="1189.0">
          <content>
-            <TableView fx:id="idTablePermi" onSort="#MethodPermi" prefHeight="429.0" prefWidth="943.0">
+            <TableView fx:id="idTablePermi" onSort="#MethodPermi" prefHeight="476.0" prefWidth="1190.0">
               <columns>
                 <TableColumn fx:id="id_NomPrenomEtu" prefWidth="179.20000916719437" text="NOM ET PRENOMS" />
                 <TableColumn fx:id="idLieuEtu" minWidth="1.5999755859375" prefWidth="100.79997253417969" text="LIEU" />

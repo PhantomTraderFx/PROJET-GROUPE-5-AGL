@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="950.0" style="-fx-background-color: #19283E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerListeParent">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1270.0" style="-fx-background-color: #19283E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerListeParent">
    <children>
-      <HBox alignment="CENTER" prefHeight="94.0" prefWidth="950.0" style="-fx-background-color: #055E41;">
+      <HBox alignment="CENTER" prefHeight="94.0" prefWidth="1270.0" style="-fx-background-color: #055E41;">
          <children>
             <Label alignment="CENTER" prefHeight="94.0" prefWidth="619.0" text="LISTE DES PARENTS" textFill="WHITE">
                <font>
@@ -28,7 +27,7 @@
             </Label>
          </children>
       </HBox>
-      <TableView layoutX="26.0" layoutY="151.0" prefHeight="421.0" prefWidth="898.0">
+      <TableView layoutX="34.0" layoutY="151.0" prefHeight="546.0" prefWidth="1204.0">
         <columns>
           <TableColumn fx:id="id_NomParent" prefWidth="150.3999900817871" text="NOM" />
           <TableColumn fx:id="id_PrenomParent" minWidth="0.0" prefWidth="158.3999786376953" text="PRENOMS" />

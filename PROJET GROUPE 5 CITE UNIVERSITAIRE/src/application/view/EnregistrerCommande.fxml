@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerCommande">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerCommande">
    <children>
-      <ImageView fitHeight="599.0" fitWidth="950.0">
+      <ImageView fitHeight="725.0" fitWidth="1270.0">
          <image>
             <Image url="@../../../images/commandeImg.jpg" />
          </image>
@@ -23,34 +23,34 @@
             <Font name="Dosis Regular" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="65.0" layoutY="86.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="NOM" textFill="#562d2d">
+      <Label layoutX="196.0" layoutY="86.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="NOM" textFill="#562d2d">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="CommandeNomEtudiant" layoutX="127.0" layoutY="86.0" prefHeight="26.0" prefWidth="97.0" />
-      <Label layoutX="415.0" layoutY="85.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="PLAT DE MIDI" textFill="#562d2d">
+      <ChoiceBox fx:id="CommandeNomEtudiant" layoutX="258.0" layoutY="86.0" prefHeight="26.0" prefWidth="97.0" />
+      <Label layoutX="546.0" layoutY="85.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="PLAT DE MIDI" textFill="#562d2d">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="244.0" layoutY="85.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="JOUR" textFill="#562d2d">
+      <Label layoutX="375.0" layoutY="85.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="JOUR" textFill="#562d2d">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="JourCommande" layoutX="295.0" layoutY="86.0" prefHeight="26.0" prefWidth="97.0" />
-      <ChoiceBox fx:id="PlatMidi" layoutX="516.0" layoutY="85.0" prefHeight="26.0" prefWidth="97.0" />
-      <Label layoutX="625.0" layoutY="85.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="PLAT DU SOIR" textFill="#562d2d">
+      <ChoiceBox fx:id="JourCommande" layoutX="426.0" layoutY="86.0" prefHeight="26.0" prefWidth="97.0" />
+      <ChoiceBox fx:id="PlatMidi" layoutX="647.0" layoutY="85.0" prefHeight="26.0" prefWidth="97.0" />
+      <Label layoutX="756.0" layoutY="85.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="PLAT DU SOIR" textFill="#562d2d">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="PlatSoir" layoutX="724.0" layoutY="86.0" prefHeight="26.0" prefWidth="97.0" />
-      <Button fx:id="enregistrerCommande" layoutX="829.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#SaveToTable" prefHeight="26.0" prefWidth="106.0" text="Enregistrer" />
-      <ScrollPane layoutX="6.0" layoutY="126.0" prefHeight="465.0" prefWidth="939.0">
+      <ChoiceBox fx:id="PlatSoir" layoutX="855.0" layoutY="86.0" prefHeight="26.0" prefWidth="97.0" />
+      <Button fx:id="enregistrerCommande" layoutX="960.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#SaveToTable" prefHeight="26.0" prefWidth="106.0" text="Enregistrer" />
+      <ScrollPane layoutX="59.0" layoutY="126.0" prefHeight="542.0" prefWidth="1165.0">
          <content>
-            <TableView fx:id="IdTable" onSort="#MethodeTableView" prefHeight="460.0" prefWidth="940.0">
+            <TableView fx:id="IdTable" onSort="#MethodeTableView" prefHeight="530.0" prefWidth="1171.0">
                <columns>
                   <TableColumn fx:id="id_NomPrenomEtu" prefWidth="218.3999900817871" text="NOM ET PRENOMS" />
                   <TableColumn fx:id="id_Lundi" minWidth="0.0" prefWidth="0.0" text="LUNDI">

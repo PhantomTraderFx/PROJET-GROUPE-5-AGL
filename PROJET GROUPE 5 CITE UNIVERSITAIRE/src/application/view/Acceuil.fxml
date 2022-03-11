@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="946.0" style="-fx-background-color: #;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerAcceuil">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: #;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerAcceuil">
    <left>
       <VBox prefHeight="586.0" prefWidth="210.0" style="-fx-background-color: #212D42;" BorderPane.alignment="CENTER">
          <children>
@@ -133,7 +133,7 @@
    <center>
       <AnchorPane fx:id="root" prefHeight="599.0" prefWidth="950.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="599.0" fitWidth="950.0" layoutX="1.0" pickOnBounds="true">
+            <ImageView fitHeight="725.0" fitWidth="1270.0" layoutX="1.0" pickOnBounds="true">
                <image>
                   <Image url="@../../../images/acceuil.jpg" />
                </image>
