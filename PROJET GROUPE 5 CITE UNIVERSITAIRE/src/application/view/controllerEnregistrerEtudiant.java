@@ -1,43 +1,168 @@
 package application.view;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import com.G5.dao.EtudiantDao;
+import com.G5.model.Etudiant;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.util.Callback;
 
-public class controllerEnregistrerEtudiant {
-
-    @FXML
-    private TextField ContactChamp;
-
-    @FXML
-    private TextField EmailChamp;
+public class controllerEnregistrerEtudiant implements Initializable {
 
     @FXML
-    private ChoiceBox<?> IdParent;
+    private TextField ContactParent;
 
     @FXML
-    private TextField NomChamp;
+    private TextField Contact_Etudiant;
 
     @FXML
-    private ChoiceBox<?> PalierSelector;
+    private TextField EmailParent;
 
     @FXML
-    private TextField PrenomChamp;
+    private TextField Nom_Etudiant;
+
+    @FXML
+    private TextField Nom_Parent;
+
+    @FXML
+    private TextField Prenom_Etudiant;
+
+    @FXML
+    private TableView<Etudiant> Tabetu;
+
+    @FXML
+    private TableColumn<Etudiant, String> idContactEtuTab;
+    
+    @FXML
+    private TableColumn <Etudiant, String> idAction;
+
+    @FXML
+    private TableColumn<?, ?> idContactEtuTab1;
+
+    @FXML
+    private TableColumn<Etudiant, String> idNomEtuTab;
+
+    @FXML
+    private TableColumn<Etudiant, String> idPrenomEtuTab;
+    
+    ObservableList<Etudiant> Etudiantlist = FXCollections.observableArrayList();
 
     @FXML
     void RemoveToChamp(MouseEvent event) {
 
     }
+    EtudiantDao etudiantDao = new EtudiantDao();
+    
 
     @FXML
     void SendEtudiantToBd(MouseEvent event) {
+    	Etudiant etudiant = new Etudiant();
+    	etudiant.setNom(Nom_Etudiant.getText());
+    	etudiant.setPrenoms(Prenom_Etudiant.getText());
+    	etudiant.setNumeroEtu(Integer.parseInt(Contact_Etudiant.getText()));
+    	etudiant.setNomParnt(Nom_Parent.getText());
+    	etudiant.setNumeroParnt(Integer.parseInt(ContactParent.getText()));
+    	etudiant.setEmailParnt(EmailParent.getText());
+    	etudiantDao.saveEtudiant(etudiant);
+    	
+    	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+    	
+    	
+    	
+    	
+    	
+    	
 
     }
 
-    @FXML
-    void select(MouseEvent event) {
 
-    }
 
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		idContactEtuTab.setCellValueFactory(new PropertyValueFactory<>("numeroEtu"));
+    	idNomEtuTab.setCellValueFactory(new PropertyValueFactory<>("nom"));
+    	idPrenomEtuTab.setCellValueFactory(new PropertyValueFactory<>("prenoms"));
+    	//EtudiantDao etudiantDao = new EtudiantDao();
+    	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+    	//chargementbtn();
+    	
+    	}
+	
+	
+	public void chargementbtn() {
+		Callback<TableColumn<Etudiant, String>, TableCell<Etudiant, String>> cellFoctory = (TableColumn<Etudiant, String> param) -> {
+            // make cell containing buttons
+            final TableCell<Etudiant, String> cell = new TableCell<Etudiant, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    //that cell created only on non-empty rows
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+
+                    } else {
+
+                        Text deleteIcon = new Text("supprimer");
+                        Text editIcon = new Text("modifier");
+
+                        deleteIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#ff1744;"
+                        );
+                        editIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
+                        );
+                        /*deleteIcon.setOnMouseClicked((MouseEvent event) -> {
+                            
+                            
+                            
+                        });
+                        editIcon.setOnMouseClicked((MouseEvent event) -> {
+                            
+                            
+                            
+                        	
+                           
+
+                        });*/
+
+                        HBox managebtn = new HBox(editIcon, deleteIcon);
+                        managebtn.setStyle("-fx-alignment:center");
+                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
+                        HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
+
+                        setGraphic(managebtn);
+
+                        setText(null);
+
+                    }
+                }
+
+            };
+
+            return cell;
+        };
+         idAction.setCellFactory(cellFoctory);
+         Tabetu.setItems(Etudiantlist);
+
+	}
 }

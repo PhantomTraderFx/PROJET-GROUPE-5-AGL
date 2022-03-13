@@ -18,7 +18,7 @@
             <Image url="@../../../images/commandeImg.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="344.0" layoutY="25.0" prefHeight="42.0" prefWidth="261.0" style="-fx-background-color: WHITE; -fx-padding: 5; -fx-background-radius: 25;" text="RENTRER UNE COMMANDE" textFill="#562d2d">
+      <Label alignment="CENTER" layoutX="459.0" layoutY="22.0" prefHeight="42.0" prefWidth="261.0" style="-fx-background-color: WHITE; -fx-padding: 5; -fx-background-radius: 25;" text="RENTRER UNE COMMANDE" textFill="#562d2d">
          <font>
             <Font name="Dosis Regular" size="24.0" />
          </font>
@@ -95,6 +95,7 @@
                         <TableColumn fx:id="id_DimancheSoir" prefWidth="47.199951171875" text="SOIR" />
                      </columns>
                   </TableColumn>
+                  <TableColumn fx:id="IdAction" prefWidth="75.0" text="ACTION" />
                </columns>
             </TableView>
          </content>

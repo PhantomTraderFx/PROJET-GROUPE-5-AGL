@@ -15,6 +15,15 @@ public class controllerEnregistrerPermission {
     private DatePicker DateSortie;
 
     @FXML
+    private TextField HeureRetour;
+
+    @FXML
+    private TextField HeureSorti;
+
+    @FXML
+    private TableColumn<?, ?> IdAction;
+
+    @FXML
     private TextField LieuEtudiant;
 
     @FXML
@@ -37,9 +46,6 @@ public class controllerEnregistrerPermission {
 
     @FXML
     private TableColumn<?, ?> id_NomPrenomEtu;
-
-    @FXML
-    private TableColumn<?, ?> id_Statut;
 
     @FXML
     void MethodPermi(ActionEvent event) {

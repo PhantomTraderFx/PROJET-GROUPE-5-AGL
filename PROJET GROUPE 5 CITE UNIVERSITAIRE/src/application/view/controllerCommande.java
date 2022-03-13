@@ -93,6 +93,9 @@ public class controllerCommande {
 
     @FXML
     private TableColumn<?, ?> id_VendrediSoir;
+    
+    @FXML
+    private TableColumn<?, ?> IdAction;
 
     @FXML
     void MethodeTableView(ActionEvent event) {
