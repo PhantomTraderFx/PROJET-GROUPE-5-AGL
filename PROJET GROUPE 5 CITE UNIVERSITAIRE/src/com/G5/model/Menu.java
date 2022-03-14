@@ -1,5 +1,5 @@
 package com.G5.model;
-// Generated 14 mars 2022, 00:05:46 by Hibernate Tools 4.3.5.Final
+// Generated 14 mars 2022, 09:36:53 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,6 @@ public class Menu implements java.io.Serializable {
 	private Integer idMenu;
 	private String plat1mdi;
 	private String jour;
-	private String moment;
 	private String plat2midi;
 	private String plat1soir;
 	private String plat2soir;
@@ -26,10 +25,9 @@ public class Menu implements java.io.Serializable {
 	public Menu() {
 	}
 
-	public Menu(String plat1mdi, String jour, String moment, String plat2midi, String plat1soir, String plat2soir) {
+	public Menu(String plat1mdi, String jour, String plat2midi, String plat1soir, String plat2soir) {
 		this.plat1mdi = plat1mdi;
 		this.jour = jour;
-		this.moment = moment;
 		this.plat2midi = plat2midi;
 		this.plat1soir = plat1soir;
 		this.plat2soir = plat2soir;
@@ -63,15 +61,6 @@ public class Menu implements java.io.Serializable {
 
 	public void setJour(String jour) {
 		this.jour = jour;
-	}
-
-	@Column(name = "MOMENT", length = 65535)
-	public String getMoment() {
-		return this.moment;
-	}
-
-	public void setMoment(String moment) {
-		this.moment = moment;
 	}
 
 	@Column(name = "PLAT2MIDI", length = 65535)

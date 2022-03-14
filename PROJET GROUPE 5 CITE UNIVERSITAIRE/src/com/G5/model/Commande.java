@@ -1,5 +1,5 @@
 package com.G5.model;
-// Generated 14 mars 2022, 00:29:40 by Hibernate Tools 4.3.5.Final
+// Generated 14 mars 2022, 09:36:53 by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,6 +22,8 @@ public class Commande implements java.io.Serializable {
 	private int idEtu;
 	private int idMenu;
 	private Date datecommande;
+	private String platcmdi;
+	private String platcsoir;
 
 	public Commande() {
 	}
@@ -31,10 +33,12 @@ public class Commande implements java.io.Serializable {
 		this.idMenu = idMenu;
 	}
 
-	public Commande(int idEtu, int idMenu, Date datecommande) {
+	public Commande(int idEtu, int idMenu, Date datecommande, String platcmdi, String platcsoir) {
 		this.idEtu = idEtu;
 		this.idMenu = idMenu;
 		this.datecommande = datecommande;
+		this.platcmdi = platcmdi;
+		this.platcsoir = platcsoir;
 	}
 
 	@Id
@@ -75,6 +79,24 @@ public class Commande implements java.io.Serializable {
 
 	public void setDatecommande(Date datecommande) {
 		this.datecommande = datecommande;
+	}
+
+	@Column(name = "PLATCMDI", length = 65535)
+	public String getPlatcmdi() {
+		return this.platcmdi;
+	}
+
+	public void setPlatcmdi(String platcmdi) {
+		this.platcmdi = platcmdi;
+	}
+
+	@Column(name = "PLATCSOIR", length = 65535)
+	public String getPlatcsoir() {
+		return this.platcsoir;
+	}
+
+	public void setPlatcsoir(String platcsoir) {
+		this.platcsoir = platcsoir;
 	}
 
 }
