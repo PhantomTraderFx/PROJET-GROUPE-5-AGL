@@ -1,7 +1,16 @@
 package application.view;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import com.G5.dao.EtudiantDao;
+import com.G5.model.Etudiant;
+
+import antlr.collections.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -9,7 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class controllerEnregistrerPermission {
+public class controllerEnregistrerPermission implements Initializable {
 
     @FXML
     private DatePicker DateSortie;
@@ -27,7 +36,7 @@ public class controllerEnregistrerPermission {
     private TextField LieuEtudiant;
 
     @FXML
-    private ChoiceBox<?> NameEtudiant;
+    private ChoiceBox<String> NameEtudiant;
 
     @FXML
     private TableColumn<?, ?> idLieuEtu;
@@ -61,5 +70,18 @@ public class controllerEnregistrerPermission {
     void select(MouseEvent event) {
 
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		EtudiantDao etudiantDao = new EtudiantDao();
+		//java.util.List<Etudiant> list = new ArrayList<Etudiant>();
+		//list = etudiantDao.getAllEtudiants();
+		for(Etudiant e: etudiantDao.getAllEtudiants()) {
+			NameEtudiant.getItems().addAll(e.getNom());
+		};
+		
+		
+	}
 
 }

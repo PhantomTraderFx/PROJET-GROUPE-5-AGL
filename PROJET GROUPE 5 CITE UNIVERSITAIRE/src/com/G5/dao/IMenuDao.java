@@ -15,4 +15,6 @@ public interface IMenuDao {
 	 List<Menu> getAllMenus();
 
 	 void deleteMenu(int id);
+	 
+	 Menu recupererPlat(String jour);
 }

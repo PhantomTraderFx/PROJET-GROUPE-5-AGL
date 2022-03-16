@@ -1,11 +1,10 @@
 package com.G5.model;
-// Generated 14 mars 2022, 00:05:46 by Hibernate Tools 4.3.5.Final
-
-import static javax.persistence.GenerationType.IDENTITY;
+// Generated 16 mars 2022, 20:27:42 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 

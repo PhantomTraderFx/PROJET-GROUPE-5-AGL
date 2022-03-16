@@ -14,5 +14,7 @@ public interface IEtudiantDao {
 	 List<Etudiant> getAllEtudiants();
 
 	 void deleteEtudiant(int id);
+	 
+	 Etudiant getEtudiant(String nom, String prenom);
 
 }

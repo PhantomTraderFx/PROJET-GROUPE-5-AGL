@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.G5.model.Etudiant;
+import com.G5.model.Menu;
 import com.G5.util.HibernateUtil;
 
 public class EtudiantDao implements IEtudiantDao {
@@ -124,5 +125,32 @@ public class EtudiantDao implements IEtudiantDao {
         }
 		
 	}
+
+	@Override
+	public Etudiant getEtudiant(String nom, String prenom) {
+		// TODO Auto-generated method stub
+		Transaction transaction = null;
+        Etudiant etudiant = new Etudiant();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // start the transaction
+            transaction = session.beginTransaction();
+
+            // Le scrypte de la requête fait en sorte d'etre en String en tenant compte des paramètres de la méthode
+    		String query = "SELECT * FROM `etudiant` WHERE ((`etudiant`.`NOM` ='"+nom+"') AND (`etudiant`.`PRENOMS`='"+prenom+"'))";
+
+            //Exécution de la requête et la mise de son résultat dans la liste de commande
+            etudiant = (Etudiant) session.createSQLQuery(query).addEntity(Etudiant.class).uniqueResult();
+            //student = session.load(Student.class, id);
+            // commit the transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return etudiant;
+	}
+
+	
 
 }

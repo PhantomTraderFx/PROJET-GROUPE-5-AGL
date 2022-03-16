@@ -1,6 +1,7 @@
 package application.view;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.G5.dao.EtudiantDao;
@@ -51,16 +52,12 @@ public class controllerEnregistrerEtudiant implements Initializable {
     private TableColumn <Etudiant, String> idAction;
 
     @FXML
-    private TableColumn<?, ?> idContactEtuTab1;
-
-    @FXML
     private TableColumn<Etudiant, String> idNomEtuTab;
 
     @FXML
     private TableColumn<Etudiant, String> idPrenomEtuTab;
     
-    ObservableList<Etudiant> Etudiantlist = FXCollections.observableArrayList();
-
+    List<Etudiant> Etudiantlist = FXCollections.observableArrayList();
     @FXML
     void RemoveToChamp(MouseEvent event) {
 
@@ -79,14 +76,11 @@ public class controllerEnregistrerEtudiant implements Initializable {
     	etudiant.setEmailParnt(EmailParent.getText());
     	etudiantDao.saveEtudiant(etudiant);
     	
+    	Etudiantlist.add(etudiant);
+    	chargementbtn();
+    	//System.out.println(Etudiantlist);
+    	
     	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
-    	
-    	
-    	
-    	
-    	
-    	
-
     }
 
 
@@ -94,12 +88,20 @@ public class controllerEnregistrerEtudiant implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		Etudiantlist = etudiantDao.getAllEtudiants();
 		idContactEtuTab.setCellValueFactory(new PropertyValueFactory<>("numeroEtu"));
     	idNomEtuTab.setCellValueFactory(new PropertyValueFactory<>("nom"));
     	idPrenomEtuTab.setCellValueFactory(new PropertyValueFactory<>("prenoms"));
     	//EtudiantDao etudiantDao = new EtudiantDao();
     	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
-    	//chargementbtn();
+    	//System.out.println(Etudiantlist);
+    	chargementbtn();
+    	//Etudiant etudiant = new Etudiant();
+    	/*etudiant = etudiantDao.recupererEtudiantByNom(1);
+    	System.out.println(etudiant.getNom());*/
+    	
+    	
+    	
     	
     	}
 	
@@ -118,7 +120,7 @@ public class controllerEnregistrerEtudiant implements Initializable {
 
                     } else {
 
-                        Text deleteIcon = new Text("supprimer");
+                        final Text deleteIcon = new Text("supprimer");
                         Text editIcon = new Text("modifier");
 
                         deleteIcon.setStyle(
@@ -131,8 +133,10 @@ public class controllerEnregistrerEtudiant implements Initializable {
                                 + "-glyph-size:28px;"
                                 + "-fx-fill:#00E676;"
                         );
-                        /*deleteIcon.setOnMouseClicked((MouseEvent event) -> {
-                            
+                        deleteIcon.setOnMouseClicked((MouseEvent event) -> {
+                            Etudiant etudiant = Tabetu.getSelectionModel().getSelectedItem();
+                            etudiantDao.deleteEtudiant(etudiant.getIdEtu());
+                            Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
                             
                             
                         });
@@ -143,7 +147,7 @@ public class controllerEnregistrerEtudiant implements Initializable {
                         	
                            
 
-                        });*/
+                        });
 
                         HBox managebtn = new HBox(editIcon, deleteIcon);
                         managebtn.setStyle("-fx-alignment:center");
@@ -162,7 +166,7 @@ public class controllerEnregistrerEtudiant implements Initializable {
             return cell;
         };
          idAction.setCellFactory(cellFoctory);
-         Tabetu.setItems(Etudiantlist);
+         Tabetu.getItems().setAll(Etudiantlist);
 
 	}
 }

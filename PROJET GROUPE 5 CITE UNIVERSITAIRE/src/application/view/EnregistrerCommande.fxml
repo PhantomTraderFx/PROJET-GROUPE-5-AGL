@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,87 +20,62 @@
             <Image url="@../../../images/commandeImg.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="459.0" layoutY="22.0" prefHeight="42.0" prefWidth="261.0" style="-fx-background-color: WHITE; -fx-padding: 5; -fx-background-radius: 25;" text="RENTRER UNE COMMANDE" textFill="#562d2d">
+      <Label alignment="CENTER" layoutX="482.0" layoutY="32.0" prefHeight="64.0" prefWidth="327.0" style="-fx-background-color: WHITE; -fx-padding: 5; -fx-background-radius: 25;" text="RENTRER UNE COMMANDE" textFill="#562d2d">
          <font>
             <Font name="Dosis Regular" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="196.0" layoutY="86.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="NOM" textFill="#562d2d">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="144.0" prefHeight="68.0" prefWidth="173.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="NOM ET PRONOMS" textAlignment="CENTER" textFill="#562d2d">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="CommandeNomEtudiant" layoutX="258.0" layoutY="86.0" prefHeight="26.0" prefWidth="97.0" />
-      <Label layoutX="546.0" layoutY="85.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="PLAT DE MIDI" textFill="#562d2d">
+      <Button fx:id="enregistrerCommande" layoutX="20.0" layoutY="612.0" mnemonicParsing="false" onMouseClicked="#SaveToTable" prefHeight="51.0" prefWidth="221.0" text="Enregistrer commande">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font size="18.0" />
+         </font></Button>
+      <ComboBox fx:id="CommandeNomEtudiant" layoutX="270.0" layoutY="160.0" onAction="#test1" prefHeight="32.0" prefWidth="241.0" />
+      <ComboBox fx:id="JourCommande" layoutX="271.0" layoutY="251.0" onAction="#test" prefHeight="32.0" prefWidth="240.0" />
+      <ComboBox fx:id="PlatMidi" layoutX="272.0" layoutY="344.0" onAction="#recupererPlatMidi" prefHeight="32.0" prefWidth="241.0" />
+      <ComboBox fx:id="PlatSoir" layoutX="273.0" layoutY="440.0" onAction="#recupererPlatSoir" prefHeight="32.0" prefWidth="240.0" />
+      <DatePicker fx:id="Dte_c" layoutX="274.0" layoutY="525.0" prefHeight="32.0" prefWidth="244.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="236.0" prefHeight="68.0" prefWidth="173.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="JOUR" textAlignment="CENTER" textFill="#562d2d">
+         <font>
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="375.0" layoutY="85.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="JOUR" textFill="#562d2d">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="331.0" prefHeight="68.0" prefWidth="173.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="PLAT DE MIDI" textAlignment="CENTER" textFill="#562d2d">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="JourCommande" layoutX="426.0" layoutY="86.0" prefHeight="26.0" prefWidth="97.0" />
-      <ChoiceBox fx:id="PlatMidi" layoutX="647.0" layoutY="85.0" prefHeight="26.0" prefWidth="97.0" />
-      <Label layoutX="756.0" layoutY="85.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-padding: 5;" text="PLAT DU SOIR" textFill="#562d2d">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="419.0" prefHeight="68.0" prefWidth="173.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="PLAT DU SOIR" textAlignment="CENTER" textFill="#562d2d">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="PlatSoir" layoutX="855.0" layoutY="86.0" prefHeight="26.0" prefWidth="97.0" />
-      <Button fx:id="enregistrerCommande" layoutX="960.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#SaveToTable" prefHeight="26.0" prefWidth="106.0" text="Enregistrer" />
-      <ScrollPane layoutX="59.0" layoutY="126.0" prefHeight="542.0" prefWidth="1165.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="509.0" prefHeight="68.0" prefWidth="173.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="DATE DE COMMANDE" textAlignment="CENTER" textFill="#562d2d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="523.0" layoutY="161.0" prefHeight="542.0" prefWidth="736.0">
          <content>
-            <TableView fx:id="IdTable" onSort="#MethodeTableView" prefHeight="530.0" prefWidth="1171.0">
+            <TableView fx:id="IdTable" onSort="#MethodeTableView" prefHeight="603.0" prefWidth="980.0" style="-fx-background-color: white; -fx-opacity: 0.8;">
                <columns>
-                  <TableColumn fx:id="id_NomPrenomEtu" prefWidth="218.3999900817871" text="NOM ET PRENOMS" />
-                  <TableColumn fx:id="id_Lundi" minWidth="0.0" prefWidth="0.0" text="LUNDI">
-                     <columns>
-                        <TableColumn fx:id="id_LundiMidi" prefWidth="47.20001220703125" text="MIDI" />
-                        <TableColumn fx:id="id_LundiSoir" prefWidth="44.79998779296875" text="SOIR" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn fx:id="id_Mardi" prefWidth="88.79998779296875" text="MARDI">
-                     <columns>
-                        <TableColumn fx:id="id_MardiMidi" prefWidth="42.39997863769531" text="MIDI" />
-                        <TableColumn fx:id="id_MardiSoir" prefWidth="47.199951171875" text="SOIR" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn fx:id="id_Mercredi" prefWidth="113.5999755859375" text="MERCREDI">
-                     <columns>
-                        <TableColumn fx:id="id_MercrediMidi" prefWidth="42.39997863769531" text="MIDI" />
-                        <TableColumn fx:id="id_MercrediSoir" prefWidth="47.199951171875" text="SOIR" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn fx:id="id_Jeudi" prefWidth="75.0" text="JEUDI">
-                     <columns>
-                        <TableColumn fx:id="id_JeudiMidi" prefWidth="42.39997863769531" text="MIDI" />
-                        <TableColumn fx:id="id_JeudiSoir" prefWidth="47.199951171875" text="SOIR" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn fx:id="id_Vendredi" prefWidth="75.0" text="VENDREDI">
-                     <columns>
-                        <TableColumn fx:id="id_VendrediMidi" prefWidth="42.39997863769531" text="MIDI" />
-                        <TableColumn fx:id="id_VendrediSoir" prefWidth="47.199951171875" text="SOIR" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn fx:id="id_Samedi" prefWidth="101.60003662109375" text="SAMEDI">
-                     <columns>
-                        <TableColumn fx:id="id_SamediMidi" prefWidth="42.39997863769531" text="MIDI" />
-                        <TableColumn fx:id="id_SamediSoir" prefWidth="47.199951171875" text="SOIR" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn fx:id="id_Dimanche" prefWidth="112.0" text="DIMANCHE">
-                     <columns>
-                        <TableColumn fx:id="id_DimancheMidi" prefWidth="42.39997863769531" text="MIDI" />
-                        <TableColumn fx:id="id_DimancheSoir" prefWidth="47.199951171875" text="SOIR" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn fx:id="IdAction" prefWidth="75.0" text="ACTION" />
+                  <TableColumn fx:id="idNomTab" prefWidth="140.2666015625" resizable="false" text="ID" />
+                  <TableColumn fx:id="idPlatMTab" prefWidth="187.99999696016312" resizable="false" text="PLAT MIDI" />
+                  <TableColumn fx:id="idPlatSTab" prefWidth="185.06666564941406" resizable="false" text="PLAT SOIR" />
+                  <TableColumn fx:id="idDateTab" prefWidth="154.933349609375" resizable="false" text="DATE" />
+                  <TableColumn fx:id="IdAction" minWidth="20.0" prefWidth="178.66668701171875" text="ACTION" />
                </columns>
             </TableView>
          </content>
       </ScrollPane>
+      <TextField fx:id="searchBox" layoutX="839.0" layoutY="93.0" onAction="#SearchBoxMethod" prefHeight="34.0" prefWidth="292.0" style="-fx-background-color: white;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
