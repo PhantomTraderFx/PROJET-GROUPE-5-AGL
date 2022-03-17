@@ -58,6 +58,7 @@ public class controllerEnregistrerEtudiant implements Initializable {
     private TableColumn<Etudiant, String> idPrenomEtuTab;
     
     List<Etudiant> Etudiantlist = FXCollections.observableArrayList();
+    Etudiant etudiantEdit = new Etudiant();
     @FXML
     void RemoveToChamp(MouseEvent event) {
 
@@ -141,8 +142,15 @@ public class controllerEnregistrerEtudiant implements Initializable {
                             
                         });
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
-                            
-                            
+                            etudiantEdit = Tabetu.getSelectionModel().getSelectedItem();
+                            etudiantEdit.setNom(Nom_Etudiant.getText());
+                            etudiantEdit.setPrenoms(Prenom_Etudiant.getText());
+                            etudiantEdit.setNumeroEtu(Integer.parseInt(Contact_Etudiant.getText()));
+                            etudiantEdit.setNumeroParnt(Integer.parseInt(ContactParent.getText()));
+                            etudiantEdit.setNomParnt(Nom_Parent.getText());
+                            etudiantEdit.setEmailParnt(EmailParent.getText());
+                            etudiantDao.updateEtudiant(etudiantEdit);
+                            Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
                             
                         	
                            

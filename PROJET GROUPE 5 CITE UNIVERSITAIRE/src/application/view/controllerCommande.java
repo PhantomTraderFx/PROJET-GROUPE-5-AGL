@@ -1,6 +1,8 @@
 package application.view;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,9 +14,11 @@ import com.G5.model.Commande;
 import com.G5.model.Etudiant;
 import com.G5.model.Menu;
 
+import application.CommandeTest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -77,19 +81,23 @@ public class controllerCommande implements Initializable{
     @FXML
     private TableColumn<Commande, String> IdAction;
     
-
+   
     List<Commande> Commandelist = FXCollections.observableArrayList();
+    ObservableList<Commande> l = FXCollections.observableArrayList();
     
     MenuDao menuDao = new MenuDao();
     Menu menu = new Menu();
     EtudiantDao etudiantDao = new EtudiantDao();
     Etudiant etudiant = new Etudiant();
     CommandeDao commandeDao = new CommandeDao();
+    Commande commandeEdit = new Commande();
+    Commande commande = new Commande();
 
     String Pm;
     String Ps;
     int ID_Menu;
     String JourC;
+    boolean edit = false;
 
 	int ID;
     
@@ -142,21 +150,49 @@ public class controllerCommande implements Initializable{
     
     @FXML
     void SearchBoxMethod(ActionEvent event) {
-    	
+		FilteredList<Commande> filteredData = new FilteredList<>(l, p -> true);
+				
+				searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
+					filteredData.setPredicate(person -> {
+						// If filter text is empty, display all persons.
+						if (newValue == null || newValue.isEmpty()) {
+							return true;
+						}
+						
+						// Compare first name and last name of every person with filter text.
+						String lowerCaseFilter = newValue.toLowerCase();
+						
+						if (String.valueOf(commande.getIdEtu()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
+							return true; // Filter matches first name.
+						}
+						return false; // Does not match.
+					});
+				});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Commande> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(IdTable.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		IdTable.getItems().setAll(sortedData);
     }
 
     @FXML
     void SaveToTable(MouseEvent event) {
-    	Commande commande = new Commande();
-    	commande.setIdEtu(this.ID);
-    	commande.setDatecommande(Date.valueOf(Dte_c.getValue()));
-    	commande.setPlatcmdi(this.Pm);
-    	commande.setPlatcsoir(this.Ps);
-    	commande.setIdMenu(this.ID_Menu);
-    	commandeDao.saveCommande(commande);
-    	Commandelist.add(commande);
-    	chargementbtn();
-    	IdTable.getItems().setAll(commandeDao.getAllCommandes());
+        commande.setIdEtu(this.ID);
+        commande.setDatecommande(Date.valueOf(Dte_c.getValue()));
+        commande.setPlatcmdi(this.Pm);
+        commande.setPlatcsoir(this.Ps);
+        commande.setIdMenu(this.ID_Menu);
+        commandeDao.saveCommande(commande);
+        Commandelist.add(commande);
+        l.add(commande);
+        chargementbtn();
+        IdTable.getItems().setAll(commandeDao.getAllCommandes());
+    	
     }
     
     void MettreDansCombo(String jour) {
@@ -202,6 +238,8 @@ public class controllerCommande implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		//l = (ObservableList<Commande>) commandeDao.getAllCommandes();
+		System.out.println(l);
 		Commandelist = commandeDao.getAllCommandes();
 		EtudiantDao etudiantDao = new EtudiantDao();
 		for(Etudiant e: etudiantDao.getAllEtudiants()) {
@@ -220,9 +258,8 @@ public class controllerCommande implements Initializable{
 		chargementbtn();
 		
 		
-		
-		
 	}
+		
 	
 	public void chargementbtn() {
 		Callback<TableColumn<Commande, String>, TableCell<Commande, String>> cellFoctory = (TableColumn<Commande, String> param) -> {
@@ -259,8 +296,21 @@ public class controllerCommande implements Initializable{
                             
                         });
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
-                            
-                            
+                            commandeEdit = IdTable.getSelectionModel().getSelectedItem();
+							/*
+							 * commande.setIdEtu(13); commandeDao.updateCommande(commande);
+							 * IdTable.getItems().setAll(commandeDao.getAllCommandes());
+							 */
+							
+							 commandeEdit.setIdEtu(ID); 
+							 commandeEdit.setIdMenu(ID_Menu);
+							 commandeEdit.setPlatcmdi(Pm);
+							 commandeEdit.setPlatcsoir(Ps);
+							 commandeEdit.setDatecommande(Date.valueOf(Dte_c.getValue()));
+							 commandeDao.updateCommande(commandeEdit);
+							 IdTable.getItems().setAll(commandeDao.getAllCommandes());
+							 
+							 //System.out.println(ID);
                             
                         	
                            

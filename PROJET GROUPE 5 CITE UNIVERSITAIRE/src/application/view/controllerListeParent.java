@@ -20,7 +20,7 @@ public class controllerListeParent implements Initializable {
     private TableColumn<Etudiant,String> id_MailParent;
 
     @FXML
-    private TableColumn<?, ?> id_NomEtudiant;
+    private TableColumn<Etudiant, String> id_NomEtudiant;
 
     @FXML
     private TableColumn<Etudiant,String> id_NomParent;
@@ -37,6 +37,8 @@ public class controllerListeParent implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		id_NumeroParent.setCellValueFactory(new PropertyValueFactory<>("numeroParnt"));
+		id_NomEtudiant.setCellValueFactory(new PropertyValueFactory<>("nom"));
 		id_MailParent.setCellValueFactory(new PropertyValueFactory<>("emailParnt"));
 		id_NomParent.setCellValueFactory(new PropertyValueFactory<>("nomParnt"));
 		EtudiantDao etudiantDao = new EtudiantDao();
