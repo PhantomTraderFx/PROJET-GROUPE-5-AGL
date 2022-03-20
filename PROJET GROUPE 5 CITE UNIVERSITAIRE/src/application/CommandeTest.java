@@ -5,76 +5,63 @@ import java.util.Date;
 
 public class CommandeTest {
 	private Integer idCommande;
-	private int idEtu;
-	private int idMenu;
-	private String nom;
-	private String prenom;
+	private String etudiant;
+	private String prenom_etudiant;
 	private Date datecommande;
 	private String platcmdi;
 	private String platcsoir;
-
 	
-	public Integer getIdCommande() {
-		return this.idCommande;
-	}
+	
+	public CommandeTest() {
 
+	}
+	
+	
+	public CommandeTest(Integer idCommande, String etudiant, String prenom_etudiant, Date datecommande, String platcmdi,
+			String platcsoir) {
+		super();
+		this.idCommande = idCommande;
+		this.etudiant = etudiant;
+		this.prenom_etudiant = prenom_etudiant;
+		this.datecommande = datecommande;
+		this.platcmdi = platcmdi;
+		this.platcsoir = platcsoir;
+	}
+	public Integer getIdCommande() {
+		return idCommande;
+	}
 	public void setIdCommande(Integer idCommande) {
 		this.idCommande = idCommande;
 	}
-	
-	public int getIdEtu() {
-		return this.idEtu;
+	public String getEtudiant() {
+		return etudiant;
 	}
-
-	public void setIdEtu(int idEtu) {
-		this.idEtu = idEtu;
+	public void setEtudiant(String etudiant) {
+		this.etudiant = etudiant;
 	}
-
-	public int getIdMenu() {
-		return this.idMenu;
+	public String getPrenom_etudiant() {
+		return prenom_etudiant;
 	}
-
-	public void setIdMenu(int idMenu) {
-		this.idMenu = idMenu;
+	public void setPrenom_etudiant(String prenom_etudiant) {
+		this.prenom_etudiant = prenom_etudiant;
 	}
-
 	public Date getDatecommande() {
-		return this.datecommande;
+		return datecommande;
 	}
-
 	public void setDatecommande(Date datecommande) {
 		this.datecommande = datecommande;
 	}
-
 	public String getPlatcmdi() {
-		return this.platcmdi;
+		return platcmdi;
 	}
-
 	public void setPlatcmdi(String platcmdi) {
 		this.platcmdi = platcmdi;
 	}
-	
 	public String getPlatcsoir() {
-		return this.platcsoir;
+		return platcsoir;
 	}
-
 	public void setPlatcsoir(String platcsoir) {
 		this.platcsoir = platcsoir;
 	}
-
-	/*public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}*/
+	
 }

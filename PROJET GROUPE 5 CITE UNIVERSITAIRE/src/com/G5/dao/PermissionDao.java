@@ -127,6 +127,56 @@ public class PermissionDao implements IPermissionDao {
 		
 	}
 
+	@Override
+	public List<Permission> getAllPer() {
+		// TODO Auto-generated method stub
+		Transaction transaction = null;
+        List < Permission > listCommande = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // start the transaction
+            transaction = session.beginTransaction();
+
+            // Le scrypte de la requête fait en sorte d'etre en String en tenant compte des paramètres de la méthode
+    		String query = "SELECT * FROM `permission` WHERE `permission`.`HEURE_ARRIVE` IS NULL";
+
+            //Exécution de la requête et la mise de son résultat dans la liste de commande
+            listCommande = session.createSQLQuery(query).addEntity(Permission.class).list();
+            //student = session.load(Student.class, id);
+            // commit the transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return listCommande;
+	}
+
+	@Override
+	public List<Permission> getAllHistoPer() {
+		// TODO Auto-generated method stub
+		Transaction transaction = null;
+        List < Permission > listCommande = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // start the transaction
+            transaction = session.beginTransaction();
+
+            // Le scrypte de la requête fait en sorte d'etre en String en tenant compte des paramètres de la méthode
+    		String query = "SELECT * FROM `permission` WHERE `permission`.`HEURE_ARRIVE` IS NOT NULL";
+
+            //Exécution de la requête et la mise de son résultat dans la liste de commande
+            listCommande = session.createSQLQuery(query).addEntity(Permission.class).list();
+            //student = session.load(Student.class, id);
+            // commit the transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return listCommande;
+	}
+
 	
 	
 }

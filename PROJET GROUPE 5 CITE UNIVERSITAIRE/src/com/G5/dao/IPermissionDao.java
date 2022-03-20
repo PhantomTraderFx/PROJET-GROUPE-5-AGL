@@ -15,5 +15,11 @@ public interface IPermissionDao {
 	 List<Permission> getAllPermission();
 
 	 void deletePermission(int id);
+	 
+	 List<Permission> getAllPer();
+	 
+	 List<Permission> getAllHistoPer();
+	 
+	 
 
 }

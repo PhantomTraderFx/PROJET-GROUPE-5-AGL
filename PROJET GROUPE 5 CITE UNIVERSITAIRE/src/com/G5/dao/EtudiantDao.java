@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.G5.model.Etudiant;
-import com.G5.model.Menu;
 import com.G5.util.HibernateUtil;
 
 public class EtudiantDao implements IEtudiantDao {

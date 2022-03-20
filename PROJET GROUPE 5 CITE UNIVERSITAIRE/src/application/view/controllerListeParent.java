@@ -6,15 +6,24 @@ import java.util.ResourceBundle;
 import com.G5.dao.EtudiantDao;
 import com.G5.model.Etudiant;
 
+import application.CommandeTest;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class controllerListeParent implements Initializable {
 	@FXML
 	private TableView<Etudiant> idTab;
+	
+	@FXML
+    private TextField searchBox;
 
     @FXML
     private TableColumn<Etudiant,String> id_MailParent;
@@ -33,6 +42,8 @@ public class controllerListeParent implements Initializable {
     
     @FXML
     private TableColumn <?, ?> IdAction;
+    
+    ObservableList<Etudiant> l = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -43,6 +54,44 @@ public class controllerListeParent implements Initializable {
 		id_NomParent.setCellValueFactory(new PropertyValueFactory<>("nomParnt"));
 		EtudiantDao etudiantDao = new EtudiantDao();
 		idTab.getItems().setAll(etudiantDao.getAllEtudiants());
+		
+		for(Etudiant e: etudiantDao.getAllEtudiants()) {
+			l.add(e);
+			
+		}
+		
+		// 1. Wrap the ObservableList in a FilteredList (initially display all data).
+		FilteredList<Etudiant> filteredData = new FilteredList<>(l, p -> true);
+		
+		// 2. Set the filter Predicate whenever the filter changes.
+		searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(person -> {
+				// If filter text is empty, display all persons.
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (person.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches first name.
+				} else if (person.getPrenoms().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+				return false; // Does not match.
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Etudiant> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(idTab.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		idTab.setItems(sortedData);
 		
 	}
 

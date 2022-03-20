@@ -42,7 +42,28 @@ public class MenuDao implements IMenuDao {
 	@Override
 	public Menu getMenuById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Transaction transaction = null;
+        Menu commande = null;
+        try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			    // start the transaction
+			    transaction = session.beginTransaction();
+
+			    // get student object
+			    commande= session.byId(Menu.class).getReference(id);
+			     // or student = session.get(Student.class, id);
+			    //or student = session.load(Student.class, id);
+			   //or commit the transaction
+			    transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+                transaction.rollback();
+		}
+			
+		}
+        
+        
+        return commande;
 	}
 
 	@Override

@@ -6,9 +6,7 @@ import java.util.ResourceBundle;
 
 import com.G5.dao.EtudiantDao;
 import com.G5.model.Etudiant;
-
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -57,8 +55,14 @@ public class controllerEnregistrerEtudiant implements Initializable {
     @FXML
     private TableColumn<Etudiant, String> idPrenomEtuTab;
     
+//    @FXML
+//    private TextField searchBox;
+    
+    //ObservableList<Etudiant> l = FXCollections.observableArrayList();
     List<Etudiant> Etudiantlist = FXCollections.observableArrayList();
     Etudiant etudiantEdit = new Etudiant();
+    Etudiant e = new Etudiant();
+    boolean btnedit = false;
     @FXML
     void RemoveToChamp(MouseEvent event) {
 
@@ -68,20 +72,46 @@ public class controllerEnregistrerEtudiant implements Initializable {
 
     @FXML
     void SendEtudiantToBd(MouseEvent event) {
-    	Etudiant etudiant = new Etudiant();
-    	etudiant.setNom(Nom_Etudiant.getText());
-    	etudiant.setPrenoms(Prenom_Etudiant.getText());
-    	etudiant.setNumeroEtu(Integer.parseInt(Contact_Etudiant.getText()));
-    	etudiant.setNomParnt(Nom_Parent.getText());
-    	etudiant.setNumeroParnt(Integer.parseInt(ContactParent.getText()));
-    	etudiant.setEmailParnt(EmailParent.getText());
-    	etudiantDao.saveEtudiant(etudiant);
+    	try {
+    		if(btnedit) {
+        		btnedit = false;
+        		Etudiant etu = new Etudiant();
+        		etu.setIdEtu(e.getIdEtu());
+        		etu.setNom(Nom_Etudiant.getText());
+        		etu.setPrenoms(Prenom_Etudiant.getText());
+        		etu.setNumeroEtu(Integer.parseInt(Contact_Etudiant.getText()));
+        		etu.setNumeroParnt(Integer.parseInt(ContactParent.getText()));
+        		etu.setNomParnt(Nom_Parent.getText());
+        		etu.setEmailParnt(EmailParent.getText());
+        		etudiantDao.updateEtudiant(etu);
+        		Etudiantlist = etudiantDao.getAllEtudiants();
+        		//chargementbtn();
+        		Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+        	}
+        	else {
+        		Etudiant etudiant = new Etudiant();
+            	etudiant.setNom(Nom_Etudiant.getText());
+            	etudiant.setPrenoms(Prenom_Etudiant.getText());
+            	etudiant.setNumeroEtu(Integer.parseInt(Contact_Etudiant.getText()));
+            	etudiant.setNomParnt(Nom_Parent.getText());
+            	etudiant.setNumeroParnt(Integer.parseInt(ContactParent.getText()));
+            	etudiant.setEmailParnt(EmailParent.getText());
+            	etudiantDao.saveEtudiant(etudiant);
+            	Etudiantlist.add(etudiant);
+            	//chargementbtn();
+            	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+        	}
+        	
+        	
+        	
+        	chargementbtn();
+    	}catch(Exception e) {
+    		System.out.println("Erruer vérifiez bien vos saisis");
+    	}
     	
-    	Etudiantlist.add(etudiant);
-    	chargementbtn();
     	//System.out.println(Etudiantlist);
     	
-    	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+    	
     }
 
 
@@ -94,12 +124,50 @@ public class controllerEnregistrerEtudiant implements Initializable {
     	idNomEtuTab.setCellValueFactory(new PropertyValueFactory<>("nom"));
     	idPrenomEtuTab.setCellValueFactory(new PropertyValueFactory<>("prenoms"));
     	//EtudiantDao etudiantDao = new EtudiantDao();
-    	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+//    	for(Etudiant e: etudiantDao.getAllEtudiants()) {
+//    		l.add(e);
+//    	}
+    	//Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
     	//System.out.println(Etudiantlist);
     	chargementbtn();
     	//Etudiant etudiant = new Etudiant();
     	/*etudiant = etudiantDao.recupererEtudiantByNom(1);
     	System.out.println(etudiant.getNom());*/
+    	
+//    	// 1. Wrap the ObservableList in a FilteredList (initially display all data).
+//		FilteredList<Etudiant> filteredData = new FilteredList<>(l, p -> true);
+//		
+//		// 2. Set the filter Predicate whenever the filter changes.
+//		searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
+//			filteredData.setPredicate(person -> {
+//				// If filter text is empty, display all persons.
+//				if (newValue == null || newValue.isEmpty()) {
+//					return true;
+//				}
+//				
+//				// Compare first name and last name of every person with filter text.
+//				String lowerCaseFilter = newValue.toLowerCase();
+//				
+//				if (person.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+//					return true; // Filter matches first name.
+//				} else if (person.getPrenoms().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+//					return true; // Filter matches last name.
+//				}
+//				return false; // Does not match.
+//			});
+//		});
+//		
+//		// 3. Wrap the FilteredList in a SortedList. 
+//		SortedList<Etudiant> sortedData = new SortedList<>(filteredData);
+//		
+//		// 4. Bind the SortedList comparator to the TableView comparator.
+//		// 	  Otherwise, sorting the TableView would have no effect.
+//		sortedData.comparatorProperty().bind(Tabetu.comparatorProperty());
+//		
+//		// 5. Add sorted (and filtered) data to the table.
+//		Tabetu.setItems(sortedData);
+    	
+    	
     	
     	
     	
@@ -142,15 +210,23 @@ public class controllerEnregistrerEtudiant implements Initializable {
                             
                         });
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
-                            etudiantEdit = Tabetu.getSelectionModel().getSelectedItem();
-                            etudiantEdit.setNom(Nom_Etudiant.getText());
-                            etudiantEdit.setPrenoms(Prenom_Etudiant.getText());
-                            etudiantEdit.setNumeroEtu(Integer.parseInt(Contact_Etudiant.getText()));
-                            etudiantEdit.setNumeroParnt(Integer.parseInt(ContactParent.getText()));
-                            etudiantEdit.setNomParnt(Nom_Parent.getText());
-                            etudiantEdit.setEmailParnt(EmailParent.getText());
-                            etudiantDao.updateEtudiant(etudiantEdit);
-                            Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+                        	btnedit = true;
+//                            etudiantEdit = Tabetu.getSelectionModel().getSelectedItem();
+//                            etudiantEdit.setNom(Nom_Etudiant.getText());
+//                            etudiantEdit.setPrenoms(Prenom_Etudiant.getText());
+//                            etudiantEdit.setNumeroEtu(Integer.parseInt(Contact_Etudiant.getText()));
+//                            etudiantEdit.setNumeroParnt(Integer.parseInt(ContactParent.getText()));
+//                            etudiantEdit.setNomParnt(Nom_Parent.getText());
+//                            etudiantEdit.setEmailParnt(EmailParent.getText());
+//                            etudiantDao.updateEtudiant(etudiantEdit);
+//                            Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+                            e = Tabetu.getSelectionModel().getSelectedItem();
+                            Nom_Etudiant.setText(e.getNom());
+                            Prenom_Etudiant.setText(e.getPrenoms());
+                            Contact_Etudiant.setText(String.valueOf(e.getNumeroEtu()));
+                            Nom_Parent.setText(e.getNomParnt());
+                            ContactParent.setText(String.valueOf(e.getNumeroParnt()));
+                            EmailParent.setText(String.valueOf(e.getEmailParnt()));
                             
                         	
                            

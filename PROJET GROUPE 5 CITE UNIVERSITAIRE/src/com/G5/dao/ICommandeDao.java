@@ -14,5 +14,6 @@ public interface ICommandeDao {
 	 List<Commande> getAllCommandes();
 
 	 void deleteCommande(int id);
+	 void updateCommand(Commande commande);
 
 }

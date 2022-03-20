@@ -3,6 +3,7 @@ package com.G5.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.G5.model.Commande;
@@ -126,6 +127,27 @@ public class CommandeDao implements ICommandeDao {
             }
         }
 
+		
+	}
+
+	@Override
+	public void updateCommand(Commande commande) {
+		// TODO Auto-generated method stub
+		Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // start the transaction
+            transaction = session.beginTransaction();
+
+            // save student object
+            session.saveOrUpdate(commande);
+
+            // commit the transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
 		
 	}
 
