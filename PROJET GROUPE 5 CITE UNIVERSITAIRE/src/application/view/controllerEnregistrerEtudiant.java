@@ -20,6 +20,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
+
+
+/**
+ * @author Ezekiel
+ *
+ */
 public class controllerEnregistrerEtudiant implements Initializable {
 
     @FXML

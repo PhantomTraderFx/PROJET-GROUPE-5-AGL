@@ -7,8 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.swing.text.Document;
-
 import com.G5.dao.EtudiantDao;
 import com.G5.dao.PermissionDao;
 import com.G5.model.Etudiant;
@@ -30,6 +28,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
+/**
+ * @author Ezekiel And Bakus
+ *
+ */
 public class controllerEnregistrerPermission implements Initializable {
 
 

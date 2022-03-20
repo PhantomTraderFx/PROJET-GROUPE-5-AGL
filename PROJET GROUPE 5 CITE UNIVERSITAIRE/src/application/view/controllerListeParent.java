@@ -5,8 +5,6 @@ import java.util.ResourceBundle;
 
 import com.G5.dao.EtudiantDao;
 import com.G5.model.Etudiant;
-
-import application.CommandeTest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,6 +16,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+
+
+/**
+ * @author Ezekiel
+ *
+ */
 public class controllerListeParent implements Initializable {
 	@FXML
 	private TableView<Etudiant> idTab;

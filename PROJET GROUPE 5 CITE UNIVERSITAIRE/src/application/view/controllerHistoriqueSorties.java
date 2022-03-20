@@ -31,6 +31,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
+/**
+ * @author Ezekiel
+ *
+ */
 public class controllerHistoriqueSorties implements Initializable {
 
     @FXML
@@ -82,14 +86,29 @@ public class controllerHistoriqueSorties implements Initializable {
     }
     
     @FXML
-    void ImpressionPdf(ActionEvent event) {
-
+    void ImpressionPdf(ActionEvent event) throws DocumentException, IOException {
+    	Document docu = new Document();
+    	PdfWriter.getInstance(docu, new FileOutputStream(etudiant.getNom()+etudiant.getPrenoms()+".pdf"));
+    	docu.open();
+    	docu.add(new Paragraph("Historique de sorti de l'étudiant "+ etudiant.getNom()+" "+etudiant.getPrenoms()));
+    	docu.add(new Paragraph());
+    	for(PermissionTest pt: per) {
+    		docu.add(new Paragraph(
+        			"\nDate de sorti: "+ pt.getDateSorti()
+        			+"\nMotif de sorti: "+ pt.getMotifSorti()
+        			+"\nDate de retour: "+ pt.getHeureArrive()
+        			));
+    		docu.add(new Paragraph("======================================="));
+    	}
+    	
+    	docu.close();
+    	Desktop.getDesktop().open(new File(etudiant.getNom()+etudiant.getPrenoms()+".pdf"));
     }
 
     @FXML
-    void validerTableHistory(ActionEvent event) throws IOException, DocumentException {
-    	Document docu = new Document();
-    	PdfWriter.getInstance(docu, new FileOutputStream(etudiant.getNom()+etudiant.getPrenoms()+".pdf"));
+    void validerTableHistory(ActionEvent event){
+    	
+    	
     	idNom.setCellValueFactory(new PropertyValueFactory<>("etudiant"));
     	idLieu.setCellValueFactory(new PropertyValueFactory<>("motifSorti"));
     	idHS.setCellValueFactory(new PropertyValueFactory<>("dateSorti"));
@@ -106,20 +125,7 @@ public class controllerHistoriqueSorties implements Initializable {
     			per.add(perT);
     		}
     	}
-    	docu.open();
-    	docu.add(new Paragraph("Historique de sorti de l'étudiant "+ etudiant.getNom()+" "+etudiant.getPrenoms()));
-    	docu.add(new Paragraph());
-    	for(PermissionTest pt: per) {
-    		docu.add(new Paragraph(
-        			"\nDate de sorti: "+ pt.getDateSorti()
-        			+"\nMotif de sorti: "+ pt.getMotifSorti()
-        			+"\nDate de retour: "+ pt.getHeureArrive()
-        			));
-    		docu.add(new Paragraph("======================================="));
-    	}
     	
-    	docu.close();
-    	Desktop.getDesktop().open(new File(etudiant.getNom()+etudiant.getPrenoms()+".pdf"));
     	
     	idTab.getItems().setAll(per);
     	
