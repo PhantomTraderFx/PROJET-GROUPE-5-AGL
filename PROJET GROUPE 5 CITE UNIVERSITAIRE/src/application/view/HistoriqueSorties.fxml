@@ -43,7 +43,7 @@
             <TableColumn fx:id="idHR" prefWidth="164.79998779296875" text="DATE DE RETOUR" />
         </columns>
       </TableView>
-      <ComboBox fx:id="nomPre" layoutX="532.0" layoutY="142.0" onAction="#getIDetu" prefHeight="26.0" prefWidth="198.0" />
+      <ComboBox fx:id="nomPre" layoutX="532.0" layoutY="142.0" onAction="#getIDetu" prefHeight="26.0" prefWidth="198.0" promptText="Choississez un étudiant" />
       <JFXButton fx:id="impr" layoutX="980.0" layoutY="142.0" onAction="#ImpressionPdf" onMouseClicked="#validerTableHistory" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color: WHITE;" text="IMPRIMER" textFill="#167911" />
    </children>
 </AnchorPane>

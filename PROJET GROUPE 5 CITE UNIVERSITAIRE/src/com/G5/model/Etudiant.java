@@ -1,5 +1,5 @@
 package com.G5.model;
-// Generated 17 mars 2022, 15:44:51 by Hibernate Tools 4.3.5.Final
+// Generated 21 mars 2022, 14:59:08 by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,9 +22,9 @@ public class Etudiant implements java.io.Serializable {
 	private Integer idEtu;
 	private String nom;
 	private String prenoms;
-	private Integer numeroEtu;
+	private String numeroEtu;
 	private String nomParnt;
-	private Integer numeroParnt;
+	private String numeroParnt;
 	private String emailParnt;
 	private Set<Alerte> alertes = new HashSet<Alerte>(0);
 	private Set<Commande> commandes = new HashSet<Commande>(0);
@@ -33,7 +33,7 @@ public class Etudiant implements java.io.Serializable {
 	public Etudiant() {
 	}
 
-	public Etudiant(String nom, String prenoms, Integer numeroEtu, String nomParnt, Integer numeroParnt,
+	public Etudiant(String nom, String prenoms, String numeroEtu, String nomParnt, String numeroParnt,
 			String emailParnt, Set<Alerte> alertes, Set<Commande> commandes, Set<Permission> permissions) {
 		this.nom = nom;
 		this.prenoms = prenoms;
@@ -76,12 +76,12 @@ public class Etudiant implements java.io.Serializable {
 		this.prenoms = prenoms;
 	}
 
-	@Column(name = "NUMERO_ETU")
-	public Integer getNumeroEtu() {
+	@Column(name = "NUMERO_ETU", length = 10)
+	public String getNumeroEtu() {
 		return this.numeroEtu;
 	}
 
-	public void setNumeroEtu(Integer numeroEtu) {
+	public void setNumeroEtu(String numeroEtu) {
 		this.numeroEtu = numeroEtu;
 	}
 
@@ -94,12 +94,12 @@ public class Etudiant implements java.io.Serializable {
 		this.nomParnt = nomParnt;
 	}
 
-	@Column(name = "NUMERO_PARNT")
-	public Integer getNumeroParnt() {
+	@Column(name = "NUMERO_PARNT", length = 10)
+	public String getNumeroParnt() {
 		return this.numeroParnt;
 	}
 
-	public void setNumeroParnt(Integer numeroParnt) {
+	public void setNumeroParnt(String numeroParnt) {
 		this.numeroParnt = numeroParnt;
 	}
 

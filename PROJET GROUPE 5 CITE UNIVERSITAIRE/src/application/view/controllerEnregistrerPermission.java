@@ -62,6 +62,8 @@ public class controllerEnregistrerPermission implements Initializable {
     @FXML
     private TableColumn<PermissionTest, String> id_NomPrenomEtu;
     
+    @FXML
+    private TextField search;
     
     List<PermissionTest> listP = new ArrayList<PermissionTest>();
     PermissionDao permissionDao = new PermissionDao();
@@ -144,7 +146,6 @@ public class controllerEnregistrerPermission implements Initializable {
         	permissionEdit.setDateSorti(permission.getDateSorti());
         	permissionEdit.setHeureArrive(permission.getHeureArrive());
         	listP.add(permissionEdit);
-        	System.out.println(listP);
         	chargementbtn();
         	
         	//idTablePermi.getItems().setAll(listP);

@@ -33,11 +33,11 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <ComboBox fx:id="CommandeNomEtudiant" layoutX="270.0" layoutY="160.0" onAction="#test1" prefHeight="32.0" prefWidth="244.0" />
-      <ComboBox fx:id="JourCommande" layoutX="271.0" layoutY="251.0" onAction="#test" prefHeight="32.0" prefWidth="244.0" />
-      <ComboBox fx:id="PlatMidi" layoutX="272.0" layoutY="344.0" onAction="#recupererPlatMidi" prefHeight="32.0" prefWidth="244.0" />
-      <ComboBox fx:id="PlatSoir" layoutX="273.0" layoutY="440.0" onAction="#recupererPlatSoir" prefHeight="32.0" prefWidth="244.0" />
-      <DatePicker fx:id="Dte_c" layoutX="274.0" layoutY="525.0" prefHeight="32.0" prefWidth="244.0" />
+      <ComboBox fx:id="CommandeNomEtudiant" layoutX="270.0" layoutY="160.0" onAction="#test1" prefHeight="32.0" prefWidth="244.0" promptText="Choississez un étudiant" />
+      <ComboBox fx:id="JourCommande" layoutX="271.0" layoutY="251.0" onAction="#test" prefHeight="32.0" prefWidth="244.0" promptText="Jour de commande" />
+      <ComboBox fx:id="PlatMidi" layoutX="272.0" layoutY="344.0" onAction="#recupererPlatMidi" prefHeight="32.0" prefWidth="244.0" promptText="Choississez le Plat de midi" />
+      <ComboBox fx:id="PlatSoir" layoutX="273.0" layoutY="440.0" onAction="#recupererPlatSoir" prefHeight="32.0" prefWidth="244.0" promptText="Choississez le plat du soir" />
+      <DatePicker fx:id="Dte_c" layoutX="274.0" layoutY="525.0" prefHeight="32.0" prefWidth="244.0" promptText="Date de commande" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="236.0" prefHeight="68.0" prefWidth="173.0" style="-fx-background-color: white; -fx-background-radius: 25;" text="JOUR" textAlignment="CENTER" textFill="#562d2d">
          <font>
             <Font name="System Bold" size="16.0" />

@@ -3,9 +3,12 @@ package application.view;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import com.G5.dao.EtudiantDao;
 import com.G5.model.Etudiant;
+
+import application.AlerteBox;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -85,34 +88,85 @@ public class controllerEnregistrerEtudiant implements Initializable {
         		etu.setIdEtu(e.getIdEtu());
         		etu.setNom(Nom_Etudiant.getText());
         		etu.setPrenoms(Prenom_Etudiant.getText());
-        		etu.setNumeroEtu(Integer.parseInt(Contact_Etudiant.getText()));
-        		etu.setNumeroParnt(Integer.parseInt(ContactParent.getText()));
+        		etu.setNumeroEtu(Contact_Etudiant.getText());
+        		etu.setNumeroParnt(ContactParent.getText());
         		etu.setNomParnt(Nom_Parent.getText());
-        		etu.setEmailParnt(EmailParent.getText());
-        		etudiantDao.updateEtudiant(etu);
-        		Etudiantlist = etudiantDao.getAllEtudiants();
-        		//chargementbtn();
-        		Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+        		if(AlerteBox.VeriferMail(EmailParent.getText())) {
+        			etu.setEmailParnt(EmailParent.getText());
+        			etudiantDao.updateEtudiant(etu);
+        			Etudiantlist = etudiantDao.getAllEtudiants();
+            		//chargementbtn();
+            		Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+        		}else {
+        			AlerteBox.BoxAlerte("Erreur", "Vérifie ton mail");
+        			
+        		}
+        		
+        		if(AlerteBox.VerifierNomP(Nom_Etudiant.getText()) && AlerteBox.VerifierNomP(Prenom_Etudiant.getText()) && AlerteBox.VerifierNomP(Nom_Parent.getText()) && AlerteBox.VeriferMail(EmailParent.getText())) {
+        			
+        		}
+        		
+        		
+        		
         	}
         	else {
         		Etudiant etudiant = new Etudiant();
-            	etudiant.setNom(Nom_Etudiant.getText());
-            	etudiant.setPrenoms(Prenom_Etudiant.getText());
-            	etudiant.setNumeroEtu(Integer.parseInt(Contact_Etudiant.getText()));
-            	etudiant.setNomParnt(Nom_Parent.getText());
-            	etudiant.setNumeroParnt(Integer.parseInt(ContactParent.getText()));
-            	etudiant.setEmailParnt(EmailParent.getText());
-            	etudiantDao.saveEtudiant(etudiant);
-            	Etudiantlist.add(etudiant);
-            	//chargementbtn();
-            	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+//        		if(AlerteBox.VerifierNomP(Nom_Etudiant.getText())) {
+//        			etudiant.setNom(Nom_Etudiant.getText());
+//        		}else {
+//        			System.out.println("erreur");
+//        		}
+//            	
+//            	etudiant.setPrenoms(Prenom_Etudiant.getText());
+//            	etudiant.setNumeroEtu(Contact_Etudiant.getText());
+//            	etudiant.setNomParnt(Nom_Parent.getText());
+//            	etudiant.setNumeroParnt(ContactParent.getText());
+//            	if(AlerteBox.VeriferMail(EmailParent.getText())) {
+//            		etudiant.setEmailParnt(EmailParent.getText());
+//            		etudiantDao.saveEtudiant(etudiant);
+//            		Etudiantlist.add(etudiant);
+//                	//chargementbtn();
+//                	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+//            	}else {
+//            		AlerteBox.BoxAlerte("Erreur", "Vérifie ton mail");
+//            		
+//            	}
+        		
+        		if(AlerteBox.VerifierNomP(Nom_Etudiant.getText()) && AlerteBox.VerifierNomP(Prenom_Etudiant.getText()) && AlerteBox.VerifierNomP(Nom_Parent.getText())){
+        			etudiant.setNom(Nom_Etudiant.getText());
+        			etudiant.setPrenoms(Prenom_Etudiant.getText());
+        			etudiant.setNomParnt(Nom_Parent.getText());
+        			
+        		}else {
+        			AlerteBox.BoxAlerte("Erreur", "Vérifie les noms");
+        		}
+        		
+        		if(AlerteBox.VerifierNum(Contact_Etudiant.getText()) && AlerteBox.VerifierNum(ContactParent.getText())) {
+        			etudiant.setNomParnt(Nom_Parent.getText());
+                	etudiant.setNumeroParnt(ContactParent.getText());
+        		}else {
+        			AlerteBox.BoxAlerte("Erreur", "Les numéros");
+        		}
+        		
+        		if(AlerteBox.VeriferMail(EmailParent.getText())) {
+        			etudiant.setEmailParnt(EmailParent.getText());
+        		}else {
+        			AlerteBox.BoxAlerte("Erreur", "Vérifie ton mail");
+        		}
+            	
+            	if(AlerteBox.VerifierNomP(Nom_Etudiant.getText()) && AlerteBox.VerifierNomP(Prenom_Etudiant.getText()) && AlerteBox.VerifierNomP(Nom_Parent.getText()) && AlerteBox.VerifierNum(Contact_Etudiant.getText()) && AlerteBox.VerifierNum(ContactParent.getText()) && AlerteBox.VeriferMail(EmailParent.getText())) {
+            		etudiantDao.saveEtudiant(etudiant);
+            	}
+            	
+            	
+            	
         	}
         	
         	
         	
         	chargementbtn();
     	}catch(Exception e) {
-    		System.out.println("Erruer vérifiez bien vos saisis");
+    		AlerteBox.BoxAlerte("Erreur", "Vérifier vos données");
     	}
     	
     	//System.out.println(Etudiantlist);
@@ -259,4 +313,6 @@ public class controllerEnregistrerEtudiant implements Initializable {
          Tabetu.getItems().setAll(Etudiantlist);
 
 	}
+	
+	
 }

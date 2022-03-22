@@ -91,7 +91,7 @@ public class controllerHistoriqueSorties implements Initializable {
     	PdfWriter.getInstance(docu, new FileOutputStream(etudiant.getNom()+etudiant.getPrenoms()+".pdf"));
     	docu.open();
     	docu.add(new Paragraph("Historique de sorti de l'étudiant "+ etudiant.getNom()+" "+etudiant.getPrenoms()));
-    	docu.add(new Paragraph());
+    	docu.add(new Paragraph("\n\n"));
     	for(PermissionTest pt: per) {
     		docu.add(new Paragraph(
         			"\nDate de sorti: "+ pt.getDateSorti()
@@ -108,26 +108,33 @@ public class controllerHistoriqueSorties implements Initializable {
     @FXML
     void validerTableHistory(ActionEvent event){
     	
-    	
-    	idNom.setCellValueFactory(new PropertyValueFactory<>("etudiant"));
-    	idLieu.setCellValueFactory(new PropertyValueFactory<>("motifSorti"));
-    	idHS.setCellValueFactory(new PropertyValueFactory<>("dateSorti"));
-    	idHR.setCellValueFactory(new PropertyValueFactory<>("heureArrive"));
-    	per.clear();
-    	for(Permission p: permissionDao.getAllHistoPer()) {
-    		if(p.getEtudiant().getIdEtu() == etudiant.getIdEtu()) {
-    			PermissionTest perT = new PermissionTest();
-    			perT.setIdPermission(p.getIdPermission());
-    			perT.setEtudiant(p.getEtudiant().getNom()+" "+p.getEtudiant().getPrenoms());
-    			perT.setDateSorti(p.getDateSorti());
-    			perT.setMotifSorti(p.getMotifSorti());
-    			perT.setHeureArrive(p.getHeureArrive());
-    			per.add(perT);
-    		}
+    	try {
+    		idNom.setCellValueFactory(new PropertyValueFactory<>("etudiant"));
+        	idLieu.setCellValueFactory(new PropertyValueFactory<>("motifSorti"));
+        	idHS.setCellValueFactory(new PropertyValueFactory<>("dateSorti"));
+        	idHR.setCellValueFactory(new PropertyValueFactory<>("heureArrive"));
+        	per.clear();
+        	for(Permission p: permissionDao.getAllHistoPer()) {
+        		if(p.getEtudiant().getIdEtu() == etudiant.getIdEtu()) {
+        			PermissionTest perT = new PermissionTest();
+        			perT.setIdPermission(p.getIdPermission());
+        			perT.setEtudiant(p.getEtudiant().getNom()+" "+p.getEtudiant().getPrenoms());
+        			perT.setDateSorti(p.getDateSorti());
+        			perT.setMotifSorti(p.getMotifSorti());
+        			perT.setHeureArrive(p.getHeureArrive());
+        			per.add(perT);
+        		}
+        	}
+        	idTab.getItems().setAll(per);
+        	
+    	}catch(ClassCastException e) {
+    		
+    	}catch(IllegalArgumentException f) {
+    		System.out.println("erruer");
+    	}catch(Exception e) {
+    		
     	}
     	
-    	
-    	idTab.getItems().setAll(per);
     	
     }
     

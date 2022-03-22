@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -31,45 +30,41 @@
             </Label>
          </children>
       </HBox>
-      <Label layoutX="8.0" layoutY="198.0" prefHeight="36.0" prefWidth="150.0" text="NOM ET PRENOMS" textFill="WHITE">
+      <Label layoutX="8.0" layoutY="134.0" prefHeight="36.0" prefWidth="150.0" text="NOM ET PRENOMS" textFill="WHITE">
          <font>
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="10.0" layoutY="318.0" prefHeight="26.0" prefWidth="53.0" text="MOTIF" textFill="WHITE">
+      <Label layoutX="397.0" layoutY="139.0" prefHeight="26.0" prefWidth="123.0" text="MOTIF DE SORTIE" textFill="WHITE">
          <font>
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="LieuEtudiant" layoutX="156.0" layoutY="318.0" prefHeight="26.0" prefWidth="222.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+      <TextField fx:id="LieuEtudiant" layoutX="543.0" layoutY="139.0" prefHeight="26.0" prefWidth="222.0" promptText="Motif" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
          <font>
             <Font name="Dosis Regular" size="20.0" />
          </font>
       </TextField>
-      <JFXButton layoutX="157.0" layoutY="499.0" onMouseClicked="#ValiderPermission" prefHeight="62.0" prefWidth="222.0" style="-fx-background-color: WHITE;" text="VALIDER" textFill="#167911" />
-      <ScrollPane layoutX="389.0" layoutY="108.0" prefHeight="606.0" prefWidth="868.0">
-         <content>
-            <TableView fx:id="idTablePermi" onSort="#MethodPermi" prefHeight="634.0" prefWidth="1230.0">
-              <columns>
-                <TableColumn fx:id="id_NomPrenomEtu" prefWidth="291.20000153779984" text="NOM ET PRENOMS" />
-                <TableColumn fx:id="idLieuEtu" minWidth="1.5999755859375" prefWidth="172.0" text="LIEU" />
-                  <TableColumn fx:id="id_Date" prefWidth="134.6666259765625" text="DATE DE SORTIE" />
-                  <TableColumn fx:id="id_HeureRetour" prefWidth="203.466796875" text="HEURE DE RETOUR" />
-                  <TableColumn fx:id="IdAction" prefWidth="199.73333740234375" text="ACTION" />
-              </columns>
-            </TableView>
-         </content>
-      </ScrollPane>
-      <TextField fx:id="HeureRetour" layoutX="157.0" layoutY="433.0" prefHeight="26.0" prefWidth="219.0" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+      <JFXButton layoutX="543.0" layoutY="188.0" onMouseClicked="#ValiderPermission" prefHeight="37.0" prefWidth="222.0" style="-fx-background-color: WHITE;" text="VALIDER" textFill="#167911" />
+      <TextField fx:id="HeureRetour" layoutX="1007.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" promptText="oui/non" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
          <font>
             <Font name="Dosis Regular" size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="10.0" layoutY="434.0" prefHeight="26.0" prefWidth="136.0" text="EST T-IL REVENU ?" textFill="WHITE">
+      <Label layoutX="860.0" layoutY="141.0" prefHeight="26.0" prefWidth="136.0" text="EST T-IL REVENU ?" textFill="WHITE">
          <font>
             <Font name="Dosis Regular" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="NOMPRE" layoutX="156.0" layoutY="202.0" onAction="#test" prefHeight="26.0" prefWidth="222.0" />
+      <ComboBox fx:id="NOMPRE" layoutX="156.0" layoutY="138.0" onAction="#test" prefHeight="26.0" prefWidth="222.0" promptText="choissisez un étudiant" />
+      <TableView fx:id="idTablePermi" layoutX="34.0" layoutY="238.0" onSort="#MethodPermi" prefHeight="463.0" prefWidth="1212.0">
+         <columns>
+            <TableColumn fx:id="id_NomPrenomEtu" prefWidth="291.20000153779984" sortable="false" text="NOM ET PRENOMS" />
+            <TableColumn fx:id="idLieuEtu" minWidth="1.5999755859375" prefWidth="172.0" sortable="false" text="MOTIF DE SORTIE" />
+            <TableColumn fx:id="id_Date" prefWidth="134.6666259765625" sortable="false" text="DATE DE SORTIE" />
+            <TableColumn fx:id="id_HeureRetour" prefWidth="203.466796875" sortable="false" text="DATE DE RETOUR" />
+            <TableColumn fx:id="IdAction" prefWidth="199.73333740234375" sortable="false" text="ACTION" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
