@@ -1,48 +1,25 @@
 package application;
 
+import java.io.IOException;
+import java.net.ConnectException;
 import java.util.Properties;
 import java.util.regex.Pattern;
-
-import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class AlerteBox {
-	public static void BoxAlerte(String title, String message) {
-		Stage window = new Stage();
-		
-		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle(title);
-		window.setMinWidth(500);
-		
-		Label label = new Label();
-		label.setText(message);
-		Button btn = new Button("OK");
-		btn.setOnAction(e -> window.close());
-		
-		VBox layout = new VBox(10);
-		layout.getChildren().addAll(label, btn);
-		layout.setAlignment(Pos.CENTER);
-		
-		Scene scene = new Scene(layout);
-		window.setScene(scene);
-		window.showAndWait();
-	}
-	
 	public static boolean VerifierNomP(String nom) {
 		String NomSansEspace = nom.replaceAll("\\s","");
 		char [] tab = NomSansEspace.toCharArray();
@@ -86,7 +63,7 @@ public class AlerteBox {
 		return false;
 	}
 	
-	public static void envoieMail(String recipient) {
+	public static void envoieMail(String recipient,String chemin,String sujet) throws ConnectException {
 		Properties pro = new Properties();
 		pro.put("mail.smtp.auth", "true");
 		//pro.put("mail.smtp.password","Amonf@2002");
@@ -95,7 +72,7 @@ public class AlerteBox {
 		pro.put("mail.smtp.host", "smtp.gmail.com");
 		pro.put("mail.smtp.port", "587");
 		
-		String myAccountEmail = "davideamon110@gmail.com";
+		String myAccountEmail = "bingervilleupb@gmail.com";
 		String password = "Amonf@2002";
 		
 		Session session = Session.getInstance(pro, new Authenticator() {
@@ -106,26 +83,44 @@ public class AlerteBox {
 			}
 			
 		});
-		Message message = prepareMessage(session, myAccountEmail, recipient);
+		Message message = prepareMessage(session, myAccountEmail, recipient,chemin, sujet);
 		try {
-			Transport.send(message);
-			System.out.println("bien envoyé");
+			Transport.send(message, myAccountEmail, password);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setHeaderText(null);
+			alert.setContentText("Email bien envoyé");
+			alert.showAndWait();
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("Veillez vérifier votre connexion\n si cela persite relancer le logiciel");
+			alert.showAndWait();
 			e.printStackTrace();
 		}
+		throw new ConnectException("");
 	} 
 	
-	private static Message prepareMessage(Session session, String myAccountEmail, String recipient) {
+	private static Message prepareMessage(Session session, String myAccountEmail, String recipient, String chemin,String sujet) {
 		
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(myAccountEmail));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-			message.setSubject("bisous");
-			message.setText("bisous");
+			message.setSubject(sujet);
+			
+			Multipart emailcontent = new MimeMultipart();
+			
+			MimeBodyPart pdfAttachement = new MimeBodyPart();
+			pdfAttachement.attachFile(chemin);
+			
+			emailcontent.addBodyPart(pdfAttachement);
+			message.setContent(emailcontent);
 			return message;
 		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

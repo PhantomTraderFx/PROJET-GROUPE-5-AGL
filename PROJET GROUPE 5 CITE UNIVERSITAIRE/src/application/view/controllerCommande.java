@@ -21,6 +21,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -220,7 +222,10 @@ public class controllerCommande implements Initializable{
 //        	PlatSoir.getItems().clear();
 //        	Dte_c.setValue(null);
     	}catch(Exception e) {
-    		System.out.println("Erreur");
+    		Alert alerte = new Alert(AlertType.ERROR);
+    		alerte.setHeaderText(null);
+    		alerte.setContentText("Vérifiez votre commande");
+    		alerte.showAndWait();
     	}
     	
 

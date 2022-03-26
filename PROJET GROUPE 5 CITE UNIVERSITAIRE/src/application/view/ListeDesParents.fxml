@@ -8,39 +8,43 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1270.0" style="-fx-background-color: #19283E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerListeParent">
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerListeParent">
    <children>
-      <HBox alignment="CENTER" prefHeight="94.0" prefWidth="1270.0" style="-fx-background-color: #055E41;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="879.0" style="-fx-background-color: #19283E;">
          <children>
-            <Label alignment="CENTER" prefHeight="94.0" prefWidth="619.0" text="LISTE DES PARENTS" textFill="WHITE">
+            <HBox alignment="CENTER" prefHeight="94.0" prefWidth="879.0" style="-fx-background-color: #055E41;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="94.0" prefWidth="619.0" text="LISTE DES PARENTS" textFill="WHITE">
+                     <font>
+                        <Font name="Dosis Regular" size="24.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/437501.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+            </HBox>
+            <TableView fx:id="idTab" layoutX="8.0" layoutY="151.0" prefHeight="462.0" prefWidth="864.0">
+              <columns>
+                <TableColumn fx:id="id_NomParent" prefWidth="190.40002059936523" text="NOM " />
+                  <TableColumn fx:id="id_NomEtudiant" prefWidth="222.40000915527344" text="NOM ETUDIANTS" />
+                  <TableColumn fx:id="id_NumeroParent" prefWidth="207.99996948242188" text="NUMERO PARENT" />
+                  <TableColumn fx:id="id_MailParent" prefWidth="185.33331298828125" text="E-MAIL PARENT" />
+              </columns>
+            </TableView>
+            <TextField fx:id="searchBox" layoutX="355.0" layoutY="104.0" prefHeight="37.0" prefWidth="210.0" promptText="Recherche">
                <font>
-                  <Font name="Dosis Regular" size="49.0" />
+                  <Font size="18.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="70.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/437501.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Label>
+            </TextField>
          </children>
-      </HBox>
-      <TableView fx:id="idTab" layoutX="34.0" layoutY="151.0" prefHeight="546.0" prefWidth="1204.0">
-        <columns>
-          <TableColumn fx:id="id_NomParent" prefWidth="150.3999900817871" text="NOM " />
-            <TableColumn fx:id="id_NomEtudiant" prefWidth="213.59991455078125" text="NOM ETUDIANTS" />
-            <TableColumn fx:id="id_NumeroParent" prefWidth="192.00006103515625" text="NUMERO PARENT" />
-            <TableColumn fx:id="id_MailParent" prefWidth="180.800048828125" text="E-MAIL PARENT" />
-            <TableColumn fx:id="IdAction" prefWidth="151.9998779296875" text="ACTION" />
-        </columns>
-      </TableView>
-      <TextField fx:id="searchBox" layoutX="494.0" layoutY="104.0" prefHeight="37.0" prefWidth="210.0" promptText="Recherche">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </TextField>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

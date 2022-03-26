@@ -3,7 +3,6 @@ package com.G5.dao;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.G5.model.Commande;
@@ -83,6 +82,7 @@ public class CommandeDao implements ICommandeDao {
         return commande;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Commande> getAllCommandes() {
 		// TODO Auto-generated method stub

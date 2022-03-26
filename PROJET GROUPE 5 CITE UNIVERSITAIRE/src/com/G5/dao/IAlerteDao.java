@@ -6,7 +6,7 @@ import com.G5.model.Alerte;
 
 
 public interface IAlerteDao {
-	 void saveAlerte(Alerte Alerte);
+	 void saveAlerte(Alerte alerte);
 
 	 void updateAlerte(Alerte alerte);
 

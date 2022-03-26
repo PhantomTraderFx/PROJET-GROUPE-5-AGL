@@ -43,7 +43,7 @@ public class controllerAcceuil {
 
     @FXML
     void GoToHome(MouseEvent event) throws IOException {
-    	fxml = FXMLLoader.load(getClass().getResource("Img.fxml"));
+    	fxml = FXMLLoader.load(getClass().getResource("img.fxml"));
     	root.getChildren().removeAll();
     	root.getChildren().setAll(fxml);
     }

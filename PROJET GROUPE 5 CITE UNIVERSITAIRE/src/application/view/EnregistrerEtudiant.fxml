@@ -9,65 +9,47 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1270.0" style="-fx-background-color: #19283E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerEnregistrerEtudiant">
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controllerEnregistrerEtudiant">
    <children>
-      <Label layoutX="30.0" layoutY="145.0" prefHeight="0.0" prefWidth="33.0" text="NOM" textFill="WHITE">
-         <font>
-            <Font name="Dosis Regular" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="Nom_Etudiant" layoutX="191.0" layoutY="144.0" prefHeight="28.0" prefWidth="143.0" promptText="Nom de l'étudiant" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
-         <font>
-            <Font name="Dosis Regular" size="42.0" />
-         </font>
-      </TextField>
-      <Label layoutX="30.0" layoutY="269.0" prefHeight="26.0" prefWidth="143.0" text="CONTACT ETUDIANT" textFill="WHITE">
-         <font>
-            <Font name="Dosis Regular" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="30.0" layoutY="204.0" prefHeight="26.0" prefWidth="81.0" text="PRENOMS" textFill="WHITE">
-         <font>
-            <Font name="Dosis Regular" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="Prenom_Etudiant" layoutX="191.0" layoutY="204.0" prefHeight="28.0" prefWidth="143.0" promptText="Prenoms de l'étudiant" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
-         <font>
-            <Font name="Dosis Regular" size="20.0" />
-         </font>
-      </TextField>
-      <Label layoutX="30.0" layoutY="335.0" prefHeight="26.0" prefWidth="98.0" text="NOM PARENT" textFill="WHITE">
-         <font>
-            <Font name="Dosis Regular" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="Nom_Parent" layoutX="191.0" layoutY="333.0" prefHeight="28.0" prefWidth="143.0" promptText="Nom du parant" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
-         <font>
-            <Font name="Dosis Regular" size="20.0" />
-         </font>
-      </TextField>
-      <HBox alignment="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="94.0" prefWidth="1270.0" style="-fx-background-color: #055E41;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="879.0" style="-fx-background-color: #19283E;">
          <children>
-            <Label alignment="CENTER" prefHeight="94.0" prefWidth="619.0" text="ENREGISTRER UN ETUDIANT" textFill="WHITE">
-               <font>
-                  <Font name="Dosis Regular" size="49.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="70.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/39977.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Label>
-         </children>
-      </HBox>
-      <VBox layoutX="377.0" layoutY="144.0" prefHeight="554.0" prefWidth="871.0">
-         <children>
-            <TableView fx:id="Tabetu" prefHeight="632.0" prefWidth="894.0">
+            <VBox layoutX="14.0" layoutY="108.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="49.0" text="NOM" textFill="WHITE">
+                     <font>
+                        <Font name="Dosis Regular" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="26.0" prefWidth="96.0" text="PRENOMS" textFill="WHITE">
+                     <font>
+                        <Font name="Dosis Regular" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="158.0" layoutY="103.0" spacing="6.0" />
+            <HBox alignment="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="94.0" prefWidth="879.0" style="-fx-background-color: #055E41;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="94.0" prefWidth="619.0" text="ENREGISTRER UN ETUDIANT" textFill="WHITE">
+                     <font>
+                        <Font name="Dosis Regular" size="24.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/39977.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox layoutX="705.0" layoutY="185.0" spacing="20.0" />
+            <TableView fx:id="Tabetu" layoutX="14.0" layoutY="264.0" prefHeight="335.0" prefWidth="850.0">
               <columns>
                 <TableColumn fx:id="idNomEtuTab" prefWidth="207.99996948242188" text="Nom" />
                 <TableColumn fx:id="idPrenomEtuTab" prefWidth="234.39996337890625" text="Prenoms" />
@@ -75,42 +57,67 @@
                   <TableColumn fx:id="idAction" prefWidth="209.5999755859375" text="Actions" />
               </columns>
             </TableView>
+            <TextField fx:id="EmailParent" layoutX="705.0" layoutY="145.0" prefHeight="30.0" prefWidth="143.0" promptText="Email du parent" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+               <font>
+                  <Font name="Arial" size="33.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="ContactParent" layoutX="705.0" layoutY="108.0" prefHeight="30.0" prefWidth="143.0" promptText="Contact du parent" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+               <font>
+                  <Font name="Arial" size="33.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="Contact_Etudiant" layoutX="408.0" layoutY="106.0" prefHeight="30.0" prefWidth="143.0" promptText="Contact de létudiant" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+               <font>
+                  <Font name="Arial" size="33.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="Prenom_Etudiant" layoutX="91.0" layoutY="142.0" prefHeight="30.0" prefWidth="143.0" promptText="Prenoms de l'étudiant" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+               <font>
+                  <Font name="Arial" size="33.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="Nom_Etudiant" layoutX="91.0" layoutY="105.0" prefHeight="30.0" prefWidth="143.0" promptText="Nom de l'étudiant" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+               <font>
+                  <Font name="Arial" size="33.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="Nom_Parent" layoutX="408.0" layoutY="143.0" prefHeight="30.0" prefWidth="143.0" promptText="Nom du parant" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
+               <font>
+                  <Font name="Arial" size="33.0" />
+               </font>
+            </TextField>
+            <Label layoutX="254.0" layoutY="110.0" prefHeight="26.0" prefWidth="193.0" text="CONTACT ETUDIANT" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Regular" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="256.0" layoutY="145.0" prefHeight="26.0" prefWidth="126.0" text="NOM PARENT" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Regular" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="566.0" layoutY="112.0" prefHeight="26.0" prefWidth="186.0" text="CONTACT PARENT" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Regular" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="568.0" layoutY="144.0" prefHeight="26.0" prefWidth="144.0" text="E-MAIL PARENT" textFill="WHITE">
+               <font>
+                  <Font name="Dosis Regular" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="285.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#SendEtudiantToBd" prefHeight="54.0" prefWidth="150.0" style="-fx-background-color: #1A2335;" text="ENREGISTRER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="453.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#RemoveToChamp" prefHeight="54.0" prefWidth="150.0" style="-fx-background-color: #1A2335;" text="ANNULER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
          </children>
-      </VBox>
-      <Label layoutX="30.0" layoutY="398.0" prefHeight="26.0" prefWidth="133.0" text="CONTACT PARENT" textFill="WHITE">
-         <font>
-            <Font name="Dosis Regular" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="ContactParent" layoutX="192.0" layoutY="398.0" prefHeight="27.0" prefWidth="143.0" promptText="Contact du parent" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
-         <font>
-            <Font name="Dosis Regular" size="20.0" />
-         </font>
-      </TextField>
-      <Label layoutX="30.0" layoutY="458.0" prefHeight="26.0" prefWidth="123.0" text="E-MAIL PARENT" textFill="WHITE">
-         <font>
-            <Font name="Dosis Regular" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="EmailParent" layoutX="192.0" layoutY="458.0" prefHeight="27.0" prefWidth="143.0" promptText="Email du parent" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
-         <font>
-            <Font name="Dosis Regular" size="20.0" />
-         </font>
-      </TextField>
-      <Button layoutX="30.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#SendEtudiantToBd" prefHeight="54.0" prefWidth="150.0" style="-fx-background-color: #1A2335;" text="ENREGISTRER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Button>
-      <Button layoutX="207.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#RemoveToChamp" prefHeight="54.0" prefWidth="123.0" style="-fx-background-color: #1A2335;" text="ANNULER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Button>
-      <TextField fx:id="Contact_Etudiant" layoutX="191.0" layoutY="268.0" prefHeight="28.0" prefWidth="143.0" promptText="Contact de létudiant" style="-fx-font-size: 12px; -fx-font-family: Dosis; -fx-background-color: white;">
-         <font>
-            <Font name="Dosis Regular" size="20.0" />
-         </font>
-      </TextField>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

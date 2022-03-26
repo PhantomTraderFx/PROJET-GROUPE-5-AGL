@@ -12,9 +12,10 @@ public class Main extends Application {
 	private static Scene scene;
 	@Override
 	public void start(Stage primaryStage) throws IOException{
-		scene = new Scene(loadFXML("view/Acceuil"),1500,800);
+		scene = new Scene(loadFXML("view/Acceuil"));
 		primaryStage.setScene(scene);
 		primaryStage.resizableProperty().setValue(false);
+		primaryStage.setTitle("Logiciel de gestion de la cité universitaire");
 		primaryStage.show();
 	}
 	

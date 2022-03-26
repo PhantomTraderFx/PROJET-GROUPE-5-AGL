@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import com.G5.model.Commande;
 import com.G5.model.Menu;
 import com.G5.util.HibernateUtil;
 
@@ -66,6 +64,7 @@ public class MenuDao implements IMenuDao {
         return commande;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Menu> getAllMenus() {
 		// TODO Auto-generated method stub

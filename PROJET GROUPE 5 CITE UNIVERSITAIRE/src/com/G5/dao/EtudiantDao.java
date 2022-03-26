@@ -80,6 +80,7 @@ public class EtudiantDao implements IEtudiantDao {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Etudiant> getAllEtudiants() {
 		// TODO Auto-generated method stub

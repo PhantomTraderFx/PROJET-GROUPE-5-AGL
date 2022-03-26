@@ -3,7 +3,6 @@ package application.view;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 import com.G5.dao.EtudiantDao;
 import com.G5.model.Etudiant;
@@ -13,10 +12,12 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -75,102 +76,102 @@ public class controllerEnregistrerEtudiant implements Initializable {
     @FXML
     void RemoveToChamp(MouseEvent event) {
 
+		Nom_Etudiant.setText("");
+    	Prenom_Etudiant.setText("");
+    	Contact_Etudiant.setText("");
+    	ContactParent.setText("");
+    	Nom_Parent.setText("");
+    	EmailParent.setText("");
     }
     EtudiantDao etudiantDao = new EtudiantDao();
     
 
     @FXML
     void SendEtudiantToBd(MouseEvent event) {
-    	try {
+    	if(Nom_Etudiant.getText().isEmpty() || Prenom_Etudiant.getText().isEmpty() || Contact_Etudiant.getText().isEmpty() || ContactParent.getText().isEmpty() || Nom_Parent.getText().isEmpty() || ContactParent.getText().isEmpty() || EmailParent.getText().isEmpty()) {
+    		Alert alerte = new Alert(AlertType.WARNING);
+    		alerte.setHeaderText(null);
+    		alerte.setContentText("Rentrez toutes vos informations");
+    		alerte.showAndWait();
+    	}else {
     		if(btnedit) {
         		btnedit = false;
-        		Etudiant etu = new Etudiant();
-        		etu.setIdEtu(e.getIdEtu());
-        		etu.setNom(Nom_Etudiant.getText());
-        		etu.setPrenoms(Prenom_Etudiant.getText());
-        		etu.setNumeroEtu(Contact_Etudiant.getText());
-        		etu.setNumeroParnt(ContactParent.getText());
-        		etu.setNomParnt(Nom_Parent.getText());
-        		if(AlerteBox.VeriferMail(EmailParent.getText())) {
-        			etu.setEmailParnt(EmailParent.getText());
+        		        	
+        		if(AlerteBox.VerifierNomP(Nom_Etudiant.getText()) && AlerteBox.VerifierNomP(Prenom_Etudiant.getText()) && AlerteBox.VerifierNomP(Nom_Parent.getText()) && AlerteBox.VeriferMail(EmailParent.getText()) && AlerteBox.VerifierNum(Contact_Etudiant.getText()) && AlerteBox.VerifierNum(ContactParent.getText())) {
+        			Etudiant etu = new Etudiant();
+            		etu.setIdEtu(e.getIdEtu());
+            		etu.setNom(Nom_Etudiant.getText().toLowerCase());
+            		etu.setPrenoms(Prenom_Etudiant.getText().toLowerCase());
+            		etu.setNumeroEtu(Contact_Etudiant.getText());
+            		etu.setNumeroParnt(ContactParent.getText());
+            		etu.setNomParnt(Nom_Parent.getText().toLowerCase());
+            		etu.setEmailParnt(EmailParent.getText().toLowerCase());
         			etudiantDao.updateEtudiant(etu);
         			Etudiantlist = etudiantDao.getAllEtudiants();
-            		//chargementbtn();
-            		Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+        			Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
+        			Alert alert = new Alert(AlertType.CONFIRMATION);
+        			alert.setHeaderText(null);
+        			alert.setContentText("Modification réussite");
+        			alert.showAndWait();
         		}else {
-        			AlerteBox.BoxAlerte("Erreur", "Vérifie ton mail");
-        			
+        			Alert alert = new Alert(AlertType.ERROR);
+        			alert.setHeaderText(null);
+        			alert.setContentText("Vérifiez vos données");
+        			alert.showAndWait();
         		}
-        		
-        		if(AlerteBox.VerifierNomP(Nom_Etudiant.getText()) && AlerteBox.VerifierNomP(Prenom_Etudiant.getText()) && AlerteBox.VerifierNomP(Nom_Parent.getText()) && AlerteBox.VeriferMail(EmailParent.getText())) {
-        			
-        		}
-        		
-        		
-        		
+
         	}
         	else {
-        		Etudiant etudiant = new Etudiant();
-//        		if(AlerteBox.VerifierNomP(Nom_Etudiant.getText())) {
-//        			etudiant.setNom(Nom_Etudiant.getText());
-//        		}else {
-//        			System.out.println("erreur");
-//        		}
-//            	
-//            	etudiant.setPrenoms(Prenom_Etudiant.getText());
-//            	etudiant.setNumeroEtu(Contact_Etudiant.getText());
-//            	etudiant.setNomParnt(Nom_Parent.getText());
-//            	etudiant.setNumeroParnt(ContactParent.getText());
-//            	if(AlerteBox.VeriferMail(EmailParent.getText())) {
-//            		etudiant.setEmailParnt(EmailParent.getText());
-//            		etudiantDao.saveEtudiant(etudiant);
-//            		Etudiantlist.add(etudiant);
-//                	//chargementbtn();
-//                	Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
-//            	}else {
-//            		AlerteBox.BoxAlerte("Erreur", "Vérifie ton mail");
-//            		
-//            	}
-        		
-        		if(AlerteBox.VerifierNomP(Nom_Etudiant.getText()) && AlerteBox.VerifierNomP(Prenom_Etudiant.getText()) && AlerteBox.VerifierNomP(Nom_Parent.getText())){
-        			etudiant.setNom(Nom_Etudiant.getText());
-        			etudiant.setPrenoms(Prenom_Etudiant.getText());
-        			etudiant.setNomParnt(Nom_Parent.getText());
-        			
-        		}else {
-        			AlerteBox.BoxAlerte("Erreur", "Vérifie les noms");
+        		boolean exiter = false;
+        		Etudiant etudiant = new Etudiant();  
+        		for(Etudiant e: etudiantDao.getAllEtudiants()) {
+        			if(e.getNom().equals(Nom_Etudiant.getText()) && e.getPrenoms().equals(Prenom_Etudiant.getText())) {
+            			exiter = true;
+        				break;
+            		}
         		}
         		
-        		if(AlerteBox.VerifierNum(Contact_Etudiant.getText()) && AlerteBox.VerifierNum(ContactParent.getText())) {
-        			etudiant.setNomParnt(Nom_Parent.getText());
-                	etudiant.setNumeroParnt(ContactParent.getText());
+        		if(exiter) {
+        			Alert alert = new Alert(AlertType.ERROR);
+            		alert.setHeaderText(null);
+            		alert.setContentText("l'étudiant existe déjà");
+            		alert.showAndWait();
         		}else {
-        			AlerteBox.BoxAlerte("Erreur", "Les numéros");
+        			if(AlerteBox.VerifierNomP(Nom_Etudiant.getText()) && AlerteBox.VerifierNomP(Prenom_Etudiant.getText()) && AlerteBox.VerifierNomP(Nom_Parent.getText()) && AlerteBox.VerifierNum(Contact_Etudiant.getText()) && AlerteBox.VerifierNum(ContactParent.getText()) && AlerteBox.VeriferMail(EmailParent.getText())) {
+                		etudiant.setNom(Nom_Etudiant.getText().toLowerCase());
+            			etudiant.setPrenoms(Prenom_Etudiant.getText().toLowerCase());
+            			etudiant.setNomParnt(Nom_Parent.getText().toLowerCase());
+            			etudiant.setNumeroEtu(Contact_Etudiant.getText());
+                    	etudiant.setNumeroParnt(ContactParent.getText());
+                    	etudiant.setEmailParnt(EmailParent.getText().toLowerCase());
+                		etudiantDao.saveEtudiant(etudiant);
+                		Etudiantlist.add(etudiant);
+                		Tabetu.getItems().setAll(Etudiantlist);
+                		Alert alerte = new Alert(AlertType.CONFIRMATION);
+                		alerte.setHeaderText(null);
+                		alerte.setContentText("Etudiant Enregistré");
+                		alerte.showAndWait();
+                	}else {
+                		Alert alert = new Alert(AlertType.ERROR);
+                		alert.setHeaderText(null);
+                		alert.setContentText("Vérifier vos données");
+                		alert.showAndWait();
+                	}
         		}
         		
-        		if(AlerteBox.VeriferMail(EmailParent.getText())) {
-        			etudiant.setEmailParnt(EmailParent.getText());
-        		}else {
-        			AlerteBox.BoxAlerte("Erreur", "Vérifie ton mail");
-        		}
-            	
-            	if(AlerteBox.VerifierNomP(Nom_Etudiant.getText()) && AlerteBox.VerifierNomP(Prenom_Etudiant.getText()) && AlerteBox.VerifierNomP(Nom_Parent.getText()) && AlerteBox.VerifierNum(Contact_Etudiant.getText()) && AlerteBox.VerifierNum(ContactParent.getText()) && AlerteBox.VeriferMail(EmailParent.getText())) {
-            		etudiantDao.saveEtudiant(etudiant);
-            	}
-            	
             	
             	
         	}
         	
         	
-        	
+    		Nom_Etudiant.setText("");
+        	Prenom_Etudiant.setText("");
+        	Contact_Etudiant.setText("");
+        	ContactParent.setText("");
+        	Nom_Parent.setText("");
+        	EmailParent.setText("");
         	chargementbtn();
-    	}catch(Exception e) {
-    		AlerteBox.BoxAlerte("Erreur", "Vérifier vos données");
     	}
-    	
-    	//System.out.println(Etudiantlist);
-    	
     	
     }
 
@@ -183,55 +184,7 @@ public class controllerEnregistrerEtudiant implements Initializable {
 		idContactEtuTab.setCellValueFactory(new PropertyValueFactory<>("numeroEtu"));
     	idNomEtuTab.setCellValueFactory(new PropertyValueFactory<>("nom"));
     	idPrenomEtuTab.setCellValueFactory(new PropertyValueFactory<>("prenoms"));
-    	//EtudiantDao etudiantDao = new EtudiantDao();
-//    	for(Etudiant e: etudiantDao.getAllEtudiants()) {
-//    		l.add(e);
-//    	}
-    	//Tabetu.getItems().setAll(etudiantDao.getAllEtudiants());
-    	//System.out.println(Etudiantlist);
     	chargementbtn();
-    	//Etudiant etudiant = new Etudiant();
-    	/*etudiant = etudiantDao.recupererEtudiantByNom(1);
-    	System.out.println(etudiant.getNom());*/
-    	
-//    	// 1. Wrap the ObservableList in a FilteredList (initially display all data).
-//		FilteredList<Etudiant> filteredData = new FilteredList<>(l, p -> true);
-//		
-//		// 2. Set the filter Predicate whenever the filter changes.
-//		searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
-//			filteredData.setPredicate(person -> {
-//				// If filter text is empty, display all persons.
-//				if (newValue == null || newValue.isEmpty()) {
-//					return true;
-//				}
-//				
-//				// Compare first name and last name of every person with filter text.
-//				String lowerCaseFilter = newValue.toLowerCase();
-//				
-//				if (person.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-//					return true; // Filter matches first name.
-//				} else if (person.getPrenoms().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-//					return true; // Filter matches last name.
-//				}
-//				return false; // Does not match.
-//			});
-//		});
-//		
-//		// 3. Wrap the FilteredList in a SortedList. 
-//		SortedList<Etudiant> sortedData = new SortedList<>(filteredData);
-//		
-//		// 4. Bind the SortedList comparator to the TableView comparator.
-//		// 	  Otherwise, sorting the TableView would have no effect.
-//		sortedData.comparatorProperty().bind(Tabetu.comparatorProperty());
-//		
-//		// 5. Add sorted (and filtered) data to the table.
-//		Tabetu.setItems(sortedData);
-    	
-    	
-    	
-    	
-    	
-    	
     	}
 	
 	

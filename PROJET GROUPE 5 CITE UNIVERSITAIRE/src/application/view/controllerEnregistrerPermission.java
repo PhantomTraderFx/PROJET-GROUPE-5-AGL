@@ -17,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -73,10 +75,11 @@ public class controllerEnregistrerPermission implements Initializable {
     
     PermissionTest permT = new PermissionTest();
     boolean btnmodif=false;
+    String nomPrenom = "";
     
     @FXML
     void test(ActionEvent event) {
-    	String nomPrenom = NOMPRE.getValue();
+    	nomPrenom = NOMPRE.getValue();
     	//String t = nomPrenom.toString();
     	List<String> listNP = Arrays.asList(nomPrenom.split(" "));
     	//System.out.println(listNP);
@@ -115,42 +118,59 @@ public class controllerEnregistrerPermission implements Initializable {
     	Date thisDate = new Date();
 		//SimpleDateFormat dateForm = new SimpleDateFormat("MM/dd/Y hh:mm");
 		//System.out.println(dateForm.format(thisDate));
-    	if(btnmodif) {
-    		btnmodif=false;
-    		Permission pr = new Permission();
-    		pr.setIdPermission(permT.getIdPermission());
-    		pr.setDateSorti(permT.getDateSorti());
-    		pr.setEtudiant(etudiant);
-    		pr.setMotifSorti(LieuEtudiant.getText());
-    		if(HeureRetour.getText().toLowerCase().equals("oui")) {
-    			pr.setHeureArrive(thisDate);
-    		}
-    		
-    		permissionDao.updatePermission(pr);
-    		listP.clear();
-        	remplirTab();
-        	chargementbtn();
-    		
-    		
-    	}else {
-    		permission.setEtudiant(etudiant);
-        	permission.setDateSorti(thisDate);
-        	permission.setMotifSorti(LieuEtudiant.getText());
-        	permissionDao.savePermission(permission);
-        	
-        	PermissionTest permissionEdit = new PermissionTest();
-        	//System.out.println(permission.getIdPermission());
-        	permissionEdit.setIdPermission(permission.getIdPermission());
-        	permissionEdit.setEtudiant(permission.getEtudiant().getNom()+" "+permission.getEtudiant().getPrenoms());
-        	permissionEdit.setMotifSorti(permission.getMotifSorti());
-        	permissionEdit.setDateSorti(permission.getDateSorti());
-        	permissionEdit.setHeureArrive(permission.getHeureArrive());
-        	listP.add(permissionEdit);
-        	chargementbtn();
-        	
-        	//idTablePermi.getItems().setAll(listP);
-        	
+    	if(nomPrenom.isEmpty() && LieuEtudiant.getText().isEmpty()) {
+    		Alert alerte = new Alert(AlertType.WARNING);
+    		alerte.setHeaderText(null);
+    		alerte.setContentText("Remplissez les champs");
+    		alerte.showAndWait();
     	}
+    	else {
+    		if(btnmodif) {
+        		btnmodif=false;
+        		Permission pr = new Permission();
+        		pr.setIdPermission(permT.getIdPermission());
+        		pr.setDateSorti(permT.getDateSorti());
+        		pr.setEtudiant(etudiant);
+        		pr.setMotifSorti(LieuEtudiant.getText());
+        		if(HeureRetour.getText().toLowerCase().equals("oui")) {
+        			pr.setHeureArrive(thisDate);
+        		}
+        		
+        		permissionDao.updatePermission(pr);
+        		listP.clear();
+            	remplirTab();
+            	chargementbtn();
+            	Alert alerte = new Alert(AlertType.CONFIRMATION);
+        		alerte.setHeaderText(null);
+        		alerte.setContentText("Modification réussite");
+        		alerte.showAndWait();
+        		
+        		
+        	}else {
+        		permission.setEtudiant(etudiant);
+            	permission.setDateSorti(thisDate);
+            	permission.setMotifSorti(LieuEtudiant.getText());
+            	permissionDao.savePermission(permission);
+            	
+            	PermissionTest permissionEdit = new PermissionTest();
+            	//System.out.println(permission.getIdPermission());
+            	permissionEdit.setIdPermission(permission.getIdPermission());
+            	permissionEdit.setEtudiant(permission.getEtudiant().getNom()+" "+permission.getEtudiant().getPrenoms());
+            	permissionEdit.setMotifSorti(permission.getMotifSorti());
+            	permissionEdit.setDateSorti(permission.getDateSorti());
+            	permissionEdit.setHeureArrive(permission.getHeureArrive());
+            	listP.add(permissionEdit);
+            	chargementbtn();
+            	Alert alerte = new Alert(AlertType.CONFIRMATION);
+        		alerte.setHeaderText(null);
+        		alerte.setContentText("Permission enregistrée");
+        		alerte.showAndWait();
+            	
+            	//idTablePermi.getItems().setAll(listP);
+            	
+        	}
+    	}
+    	
     	
     	
     	

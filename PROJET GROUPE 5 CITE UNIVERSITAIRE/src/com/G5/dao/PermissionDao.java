@@ -80,6 +80,7 @@ public class PermissionDao implements IPermissionDao {
         return student;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Permission> getAllPermission() {
 		// TODO Auto-generated method stub
@@ -127,6 +128,7 @@ public class PermissionDao implements IPermissionDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Permission> getAllPer() {
 		// TODO Auto-generated method stub
@@ -152,6 +154,7 @@ public class PermissionDao implements IPermissionDao {
         return listCommande;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Permission> getAllHistoPer() {
 		// TODO Auto-generated method stub
